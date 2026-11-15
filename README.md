@@ -7,6 +7,7 @@ Appen är en statisk webbsida utan byggsteg. Lägg den på hemskärmen i Safari 
 ## Filer
 
 - `index.html`, `styles.css`, `app.js`: appen.
+- `sync.js`: synk mellan enheter genom ett privat GitHub-repo.
 - `ai.js`: assistenten. Den använder din egen Anthropic-nyckel, som bara sparas i webbläsaren på enheten.
 - `data/schedule.json`: kursschemat med alla seminariegruppers tider.
 - `vendor/anthropic-sdk.js`: Anthropics SDK, buntad till en fil.
@@ -33,3 +34,17 @@ npx esbuild entry.mjs --bundle --format=esm --minify --platform=browser --target
 ## Data
 
 Egna händelser, vald grupp och ändringar sparas i webbläsarens lagring på varje enhet. Under Kalendrar finns export och import av en säkerhetskopia.
+
+## Synk mellan enheter
+
+Synken är frivillig och slås på under Kalendrar → Synk. Kalendern sparas då som filen `kalender.json` i ett privat repo som heter `kalender-data` på ditt eget GitHub-konto, och varje enhet läser och skriver den filen.
+
+Så här kopplar du en enhet:
+
+1. Repot `kalender-data` ska finnas på ditt konto och vara privat.
+2. Tryck på Synka mellan enheter i appen och sedan Öppna GitHub. Länken öppnar formuläret för en fine-grained token med Contents: Read and write förvalt.
+3. Välj ”Only select repositories” och `kalender-data`, tryck Generate token och klistra in nyckeln i appen.
+
+Nyckeln sparas bara i webbläsaren på enheten (`kalender-sync` i localStorage) och kommer bara åt det repot.
+
+Så fungerar det: varje händelse, schemaändring, kalender och inställning har en tidsstämpel för när den senast ändrades. Enheterna slår ihop sina kopior post för post och den senaste ändringen vinner. Raderade poster ligger kvar som markeringar så att en gammal enhet inte kan väcka dem till liv. Ändringar skickas ett par sekunder efter att de görs, och appen hämtar andras ändringar när den öppnas och ungefär en gång i minuten. Varje sparning blir en commit i `kalender-data`, så historiken fungerar också som säkerhetskopia. Utseende, vald vy och AI-nyckeln synkas inte.

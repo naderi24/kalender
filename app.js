@@ -1,8 +1,10 @@
 /* Kalender: a small personal calendar in the style of the iPhone one.
    - Course timetable comes from data/schedule.json (all seminar groups); the user's group picks the right slot.
    - Own events, edits to course events and settings live in localStorage on the device.
+   - sync.js keeps several devices the same through a private GitHub repo, when the user has switched that on.
    - ai.js adds the assistant (the user's own Anthropic API key). */
-const VERSION = 'v2';
+import { createSync, toDoc, applyDoc, stampDoc, TOKEN_URL } from './sync.js';
+const VERSION = 'v3';
 const LS = 'kalender-v1', LS_SCHED = 'kalender-schedule-v1';
 const HOUR = 56;          /* px per hour in the timeline; keep in step with --hh in styles.css */
 const SNAP = 15;          /* minutes */
@@ -65,6 +67,7 @@ const blank = () => ({
   cals: [{ id: 'privat', name: 'Privat', color: '#007aff' }, { id: 'plugg', name: 'Plugg', color: '#ff2d55' }],
   hidden: [],            /* calendar ids switched off */
   groups: {},            /* course id -> seminar group */
+  ou: {}, cu: {}, fu: {},   /* when each course edit, calendar and setting last changed (for sync); deleted ones stay listed here */
   onboarded: false, view: '', lastCal: 'privat', theme: 'auto', upd: 0,
 });
 function load() { try { const raw = localStorage.getItem(LS); if (raw) return Object.assign(blank(), JSON.parse(raw)); } catch (e) { /* private mode */ } return blank(); }
@@ -72,7 +75,15 @@ let state = load();
 let schedule = null;
 try { schedule = JSON.parse(localStorage.getItem(LS_SCHED) || 'null'); } catch (e) { /* ignore */ }
 let courseCache = null, pristine = new Map();
-function save() { state.upd = Date.now(); courseCache = null; try { localStorage.setItem(LS, JSON.stringify(state)); } catch (e) { /* ignore */ } }
+function persist() { courseCache = null; try { localStorage.setItem(LS, JSON.stringify(state)); } catch (e) { /* ignore */ } }
+/* `known` is everything that syncs, as it was at the last save. save() compares against it and time-stamps whatever
+   changed (an undo and an import included), which is what lets two devices merge their changes. */
+let known = toDoc(state);
+function save() {
+  state.upd = Date.now();
+  known = stampDoc(toDoc(state), known, state.upd); applyDoc(state, known);
+  persist(); sync.changed();
+}
 
 const today = () => dayStart(new Date());
 const ui = { date: today(), view: state.view || (matchMedia('(min-width: 900px)').matches ? 'week' : 'day'), scroll: null, occs: new Map() };
@@ -86,6 +97,28 @@ function applyTheme() {
   const meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', dark ? '#000000' : '#ffffff');
 }
 darkQuery.addEventListener('change', applyTheme);
+
+/* ---------- sync between devices (sync.js) ---------- */
+let syncDraw = null;      /* redraws the open Kalendrar sheet: (everything) => void */
+const sync = createSync({
+  getDoc: () => toDoc(state),
+  busy: () => !!drag,
+  /* another device changed something: take the merged calendar, and mend what no longer fits */
+  adopt(doc) {
+    applyDoc(state, doc); known = toDoc(state);
+    let mended = false;
+    if (!state.cals.length) { state.cals = [blank().cals[0]]; mended = true; }
+    for (const ev of state.events) if (!ev.del && !state.cals.some((c) => c.id === ev.cal)) { ev.cal = state.cals[0].id; mended = true; }
+    if (!state.cals.some((c) => c.id === state.lastCal)) state.lastCal = state.cals[0].id;
+    if (mended) save(); else persist();
+    render();
+    if (syncDraw) syncDraw(true);
+  },
+  onStatus(st) {
+    $('#cals').classList.toggle('warn', st.on && st.state === 'error');
+    if (syncDraw) syncDraw(false);
+  },
+});
 
 /* ---------- calendars ---------- */
 function calendars() {
@@ -191,7 +224,7 @@ const modelTimes = (v) => v.allDay
   : { start: toLocal(v.start), end: toLocal(v.end) };
 function applyNew(v) {
   const ev = { id: uid(), title: v.title || 'Ny händelse', loc: v.loc || '', notes: v.notes || '', allDay: !!v.allDay, ...modelTimes(v),
-    cal: state.cals.some((c) => c.id === v.cal) ? v.cal : 'privat', rr: v.rr || null, ex: [], upd: Date.now() };
+    cal: state.cals.some((c) => c.id === v.cal) ? v.cal : state.cals[0].id, rr: v.rr || null, ex: [], upd: Date.now() };
   state.events.push(ev); state.lastCal = ev.cal; return ev.id;
 }
 /* scope: 'one' changes only this occurrence of a repeating event, 'all' the whole series */
@@ -596,8 +629,30 @@ function go(dir) {
 
 /* ---------- calendars and settings ---------- */
 function openCalendars() {
-  const body = h('div');
+  const body = h('div'), syncBox = h('div');
   const s = sheet({ title: 'Kalendrar', right: { label: 'Klar', strong: true, fn: (x) => x.close() }, body });
+  function drawSync() {
+    const st = sync.status;
+    if (!st.on) {
+      syncBox.replaceChildren(grp('Synk', h('div', { class: 'row' }, h('button', { type: 'button', class: 'link', onclick: openSync }, 'Synka mellan enheter'))),
+        h('p', { class: 'note' }, 'Samma kalender på mobilen och datorn. Den sparas då i ett privat repo på ditt GitHub-konto.'));
+      return;
+    }
+    const at = st.at ? new Date(st.at) : null;
+    const text = st.state === 'busy' ? 'Synkar…' : st.state === 'offline' ? 'Ingen uppkoppling' : st.state === 'error' ? 'Synken har stannat'
+      : at ? 'Synkad ' + (sameDay(at, new Date()) ? 'idag ' : fmt(at, { day: 'numeric', month: 'short' }) + ' ') + hm(at) : 'Inte synkad än';
+    syncBox.replaceChildren(grp('Synk',
+      h('div', { class: 'row' }, h('span', { class: 'row-l grow' + (st.state === 'error' ? ' err' : ''), role: 'status' }, text), h('button', { type: 'button', class: 'link', disabled: st.state === 'busy', onclick: () => sync.now() }, 'Synka nu')),
+      h('div', { class: 'row' }, h('button', { type: 'button', class: 'link danger', onclick: async () => {
+        const i = await choose('Sluta synka på den här enheten? Dina händelser finns kvar här och på GitHub.', [{ label: 'Koppla från', danger: true }]);
+        if (i === 0) { sync.disconnect(); toast('Synken är avstängd på den här enheten'); } } }, 'Koppla från'))),
+      h('p', { class: 'note' + (st.state === 'error' ? ' err' : '') }, st.state === 'error' ? st.error : st.state === 'offline' ? 'Ändringar sparas här och skickas när du är uppkopplad igen.' : 'Synkar med ' + st.repo + ' på GitHub. Ändringar skickas efter ett par sekunder.'));
+  }
+  /* called by sync: redraw only the sync rows, or everything when another device changed calendars or groups (unless a field is being typed in) */
+  syncDraw = (everything) => {
+    if (!body.isConnected) { syncDraw = null; return; }
+    if (everything && !/INPUT|SELECT/.test((document.activeElement || {}).tagName || '')) draw(); else drawSync();
+  };
   const check = (c) => h('button', { type: 'button', class: 'cal-check', role: 'checkbox', 'aria-checked': String(visible(c.id)), 'aria-label': 'Visa ' + c.name, style: '--c:' + c.color,
     onclick: () => { state.hidden = visible(c.id) ? state.hidden.concat(c.id) : state.hidden.filter((x) => x !== c.id); save(); render(); draw(); } });
   function draw() {
@@ -620,14 +675,38 @@ function openCalendars() {
       grp('Utseende', h('div', { class: 'row' }, h('div', { class: 'seg', role: 'group', 'aria-label': 'Utseende' },
         [['auto', 'Automatiskt'], ['light', 'Ljust'], ['dark', 'Mörkt']].map(([k, label]) => h('button', { type: 'button', 'aria-selected': String((state.theme || 'auto') === k), 'aria-pressed': String((state.theme || 'auto') === k),
           onclick: () => { state.theme = k; save(); applyTheme(); draw(); } }, label))))),
+      syncBox,
       grp('AI-assistent', row(null, keyIn)),
       h('p', { class: 'note' }, 'Assistenten använder din egen nyckel från console.anthropic.com. Den sparas bara på den här enheten och skickas bara till Anthropic.'),
       grp('Säkerhetskopia', h('div', { class: 'row' }, h('button', { type: 'button', class: 'link', onclick: exportData }, 'Exportera mina händelser')),
         h('div', { class: 'row' }, h('button', { type: 'button', class: 'link', onclick: importData }, 'Importera från fil'))),
       h('p', { class: 'note' }, 'Dina egna händelser sparas på den här enheten. Kalender ' + VERSION + (schedule ? ' · schema ' + schedule.version : ''))].filter(Boolean));
+    drawSync();
   }
   draw();
   return s;
+}
+/* switching sync on: the user makes a key on GitHub that reaches only the data repo, and pastes it here */
+function openSync() {
+  const key = h('input', { type: 'password', class: 'in', placeholder: 'github_pat_…', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': 'Nyckel från GitHub' });
+  const msg = h('p', { class: 'note err', role: 'alert', hidden: true });
+  let working = false;
+  async function connect(x) {
+    if (working) return;
+    working = true; msg.hidden = true; const btn = x.el.querySelector('.bar-btn.r'); btn.textContent = 'Kopplar…'; btn.disabled = true;
+    try { await sync.connect(key.value); x.close(); toast('Synken är på'); if (syncDraw) syncDraw(true); }
+    catch (e) { msg.textContent = e && e.kind ? e.message : 'Det gick inte att koppla. Försök igen.'; msg.hidden = false; if (!(e && e.kind)) console.error(e); }
+    finally { working = false; btn.textContent = 'Koppla'; btn.disabled = false; }
+  }
+  sheet({ title: 'Synk', left: { label: 'Avbryt', fn: (x) => x.close() }, right: { label: 'Koppla', strong: true, fn: connect }, body: [
+    h('p', { class: 'lead' }, 'Samma kalender på alla enheter'),
+    h('p', { class: 'note center' }, 'Kalendern sparas i ditt privata GitHub-repo kalender-data. Gör så här på varje enhet du vill synka.'),
+    grp('1. Skapa en nyckel', h('div', { class: 'row' }, h('a', { class: 'link', href: TOKEN_URL, target: '_blank', rel: 'noopener' }, 'Öppna GitHub'))),
+    h('p', { class: 'note' }, 'Logga in. Under Repository access väljer du ”Only select repositories” och kalender-data. Tryck Generate token och kopiera nyckeln. Samma nyckel fungerar på flera enheter, men GitHub visar den bara en gång.'),
+    grp('2. Klistra in nyckeln', row(null, key)),
+    h('p', { class: 'note' }, 'Nyckeln sparas bara på den här enheten och skickas bara till GitHub. Den kommer bara åt kalender-data.'),
+    msg] });
+  key.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); connect(openSheets[openSheets.length - 1]); } });
 }
 function exportData() {
   const a = h('a', { href: URL.createObjectURL(new Blob([JSON.stringify(state, null, 1)], { type: 'application/json' })), download: 'kalender-' + ymd(new Date()) + '.json' });
@@ -723,7 +802,9 @@ document.addEventListener('keydown', (e) => {
 setInterval(() => { updateNow(); if (!sameDay(lastTick, new Date())) { lastTick = new Date(); render(); } }, 30000);
 let lastTick = new Date();
 window.addEventListener('resize', updateNow);
-document.addEventListener('visibilitychange', () => { if (!document.hidden) { updateNow(); loadSchedule(); } });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) { updateNow(); loadSchedule(); sync.poll(); } });
+window.addEventListener('online', () => sync.poll());
+setInterval(() => sync.poll(), 60000);     /* picks up what other devices saved; GitHub answers "nothing new" for free */
 
 async function loadSchedule() {
   try {
@@ -736,4 +817,5 @@ async function loadSchedule() {
 applyTheme();
 render();
 loadSchedule();
+sync.poll();
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});

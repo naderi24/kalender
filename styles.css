@@ -175,6 +175,10 @@ svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-l
 .link.danger{font-size:15px}
 .note{margin:-10px 16px 18px;font-size:13px;line-height:1.35;color:var(--ink2)}
 .note.center{margin:0 16px 18px;text-align:center}
+.note.err,.row-l.err{color:var(--red)}
+a.link{display:flex;align-items:center;text-decoration:none}
+.link:disabled{color:var(--ink3);cursor:default}
+.bottom #cals.warn::after{content:"";display:inline-block;width:8px;height:8px;margin-left:6px;border-radius:50%;background:#ff9500;vertical-align:middle}
 .lead{margin:8px 16px 8px;text-align:center;font-size:22px;font-weight:700;letter-spacing:-.02em}
 .ed-src{display:flex;align-items:center;gap:8px;margin:0 16px 12px;font-size:14px;color:var(--ink2)}
 .ed-src i,.cal-check{flex:none;width:12px;height:12px;border-radius:50%;background:var(--c)}
