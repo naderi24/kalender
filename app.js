@@ -2,7 +2,7 @@
    - Course timetable comes from data/schedule.json (all seminar groups); the user's group picks the right slot.
    - Own events, edits to course events and settings live in localStorage on the device.
    - ai.js adds the assistant (the user's own Anthropic API key). */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const LS = 'kalender-v1', LS_SCHED = 'kalender-schedule-v1';
 const HOUR = 56;          /* px per hour in the timeline; keep in step with --hh in styles.css */
 const SNAP = 15;          /* minutes */
@@ -65,7 +65,7 @@ const blank = () => ({
   cals: [{ id: 'privat', name: 'Privat', color: '#007aff' }, { id: 'plugg', name: 'Plugg', color: '#ff2d55' }],
   hidden: [],            /* calendar ids switched off */
   groups: {},            /* course id -> seminar group */
-  onboarded: false, view: '', lastCal: 'privat', upd: 0,
+  onboarded: false, view: '', lastCal: 'privat', theme: 'auto', upd: 0,
 });
 function load() { try { const raw = localStorage.getItem(LS); if (raw) return Object.assign(blank(), JSON.parse(raw)); } catch (e) { /* private mode */ } return blank(); }
 let state = load();
@@ -76,6 +76,16 @@ function save() { state.upd = Date.now(); courseCache = null; try { localStorage
 
 const today = () => dayStart(new Date());
 const ui = { date: today(), view: state.view || (matchMedia('(min-width: 900px)').matches ? 'week' : 'day'), scroll: null, occs: new Map() };
+
+/* ---------- theme: follow the system, or the one picked under Kalendrar ---------- */
+const darkQuery = matchMedia('(prefers-color-scheme: dark)');
+function applyTheme() {
+  const t = state.theme === 'light' || state.theme === 'dark' ? state.theme : '';
+  if (t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme');
+  const dark = t ? t === 'dark' : darkQuery.matches;
+  const meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', dark ? '#000000' : '#ffffff');
+}
+darkQuery.addEventListener('change', applyTheme);
 
 /* ---------- calendars ---------- */
 function calendars() {
@@ -217,7 +227,7 @@ function applyDelete(o, scope) {
   else state.events[i] = { id: ev.id, del: true, upd: Date.now() };
 }
 const snapshot = () => JSON.stringify(state);
-function restore(snap) { state = JSON.parse(snap); save(); render(); }
+function restore(snap) { state = JSON.parse(snap); save(); applyTheme(); render(); }
 function mutate(fn, msg) {
   const snap = snapshot(); fn(); save(); render();
   if (msg) toast(msg, 'Ångra', () => restore(snap));
@@ -607,6 +617,9 @@ function openCalendars() {
         h('div', { class: 'row' }, h('button', { type: 'button', class: 'link', onclick: () => {
           const name = (prompt('Vad ska kalendern heta?') || '').trim(); if (!name) return;
           state.cals.push({ id: 'k' + uid(), name: name.slice(0, 30), color: PALETTE.find((p) => !calendars().some((c) => c.color === p)) || PALETTE[state.cals.length % PALETTE.length] }); save(); draw(); } }, 'Lägg till kalender'))),
+      grp('Utseende', h('div', { class: 'row' }, h('div', { class: 'seg', role: 'group', 'aria-label': 'Utseende' },
+        [['auto', 'Automatiskt'], ['light', 'Ljust'], ['dark', 'Mörkt']].map(([k, label]) => h('button', { type: 'button', 'aria-selected': String((state.theme || 'auto') === k), 'aria-pressed': String((state.theme || 'auto') === k),
+          onclick: () => { state.theme = k; save(); applyTheme(); draw(); } }, label))))),
       grp('AI-assistent', row(null, keyIn)),
       h('p', { class: 'note' }, 'Assistenten använder din egen nyckel från console.anthropic.com. Den sparas bara på den här enheten och skickas bara till Anthropic.'),
       grp('Säkerhetskopia', h('div', { class: 'row' }, h('button', { type: 'button', class: 'link', onclick: exportData }, 'Exportera mina händelser')),
@@ -629,7 +642,7 @@ function importData() {
       const n = j.events.filter((e) => !e.del).length;
       const i = await choose('Ersätta allt på den här enheten med filens ' + n + ' händelser?', [{ label: 'Ersätt', danger: true }]);
       if (i !== 0) return;
-      const snap = snapshot(); state = Object.assign(blank(), j); save(); render();
+      const snap = snapshot(); state = Object.assign(blank(), j); save(); applyTheme(); render();
       toast('Importerat', 'Ångra', () => restore(snap));
     } catch (e) { toast('Filen gick inte att läsa'); }
   });
@@ -720,6 +733,7 @@ async function loadSchedule() {
   } catch (e) { /* offline: keep the copy we have */ }
   onboard();
 }
+applyTheme();
 render();
 loadSchedule();
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
