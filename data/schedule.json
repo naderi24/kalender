@@ -1,0 +1,1727 @@
+{
+ "version": "2026-11-15",
+ "source": "SSE Trainers (hämtat från Canvas 27–28 okt 2026)",
+ "tz": "Europe/Stockholm",
+ "courses": [
+  {
+   "id": "be202",
+   "code": "BE202",
+   "name": "Strategy",
+   "color": "#34c759",
+   "groups": 8,
+   "imported": "2026-10-28",
+   "events": [
+    {
+     "id": "L1",
+     "kind": "lecture",
+     "short": "L1",
+     "title": "Lecture 1: What is strategy? Introduction, macro environment, strategy fundamentals",
+     "start": "2026-10-30T09:15:00Z",
+     "end": "2026-10-30T11:00:00Z",
+     "room": "Aula",
+     "note": "The course in one picture, what strategy is and is not, and the macro environment (PESTEL). Read chapters 1 and 3 and the slide package 1A before.\n• Strategy = long-term direction: goals, scope and advantage\n• PESTEL: name the factor, then say why it matters for this industry\n• Lectures do not repeat the book; they add tips, context and exercises"
+    },
+    {
+     "id": "L2",
+     "kind": "lecture",
+     "short": "L2",
+     "title": "Lecture 2: Industry structural analysis, competitive five forces, strategic groups",
+     "start": "2026-11-02T09:15:00Z",
+     "end": "2026-11-02T11:00:00Z",
+     "room": "Aula",
+     "note": "How to define an industry and run a competitive forces analysis, and how strategic groups divide it. Chapter 4, plus the slidecasts on the competitive forces and the steps in an industry analysis.\n• Define the industry first: product and geography\n• Rate each force high, medium or low, with evidence\n• Strategic groups: similar strategies, separated by mobility barriers"
+    },
+    {
+     "id": "L3",
+     "kind": "lecture",
+     "short": "L3",
+     "title": "Lecture 3: Competitive strategies, competitive advantage, VRIO analysis",
+     "start": "2026-11-06T12:15:00Z",
+     "end": "2026-11-06T14:00:00Z",
+     "room": "Aula",
+     "note": "Generic and hybrid strategies, resources and capabilities, VRIO, imitation barriers and dynamic capabilities. Chapters 8 and 5, and the Groupon illustration.\n• Cost leadership needs the lowest cost, not just low prices\n• VRIO: value, rarity, inimitability, organisational support\n• Imitation barriers: complexity, causal ambiguity, culture and history"
+    },
+    {
+     "id": "L4",
+     "kind": "lecture",
+     "short": "L4",
+     "title": "Lecture 4: Corporate strategy and diversification, and the strategy project",
+     "start": "2026-11-09T07:15:00Z",
+     "end": "2026-11-09T09:00:00Z",
+     "room": "Aula",
+     "note": "Directions of growth, related and unrelated diversification, vertical integration, international strategy, and the introduction to the strategy project. Chapters 9 and 10.\n• The project guidelines are posted the same day under Strategy Project\n• Diversification creates value only through scope, management capabilities, internal processes or market power\n• Integrate when you have superior capabilities or face opportunism"
+    },
+    {
+     "id": "L5",
+     "kind": "lecture",
+     "short": "L5",
+     "title": "Lecture 5: Business models, ecosystems, complementors, network effects, multisided platforms",
+     "start": "2026-11-26T12:15:00Z",
+     "end": "2026-11-26T14:00:00Z",
+     "room": "Aula",
+     "note": "Value creation, configuration and capture, ecosystems and complementors, direct and indirect network effects, and multisided platform strategy. Chapters 4 and 8.\n• Indirect network effects run across the sides of a platform\n• Multihoming makes winner-takes-all less likely\n• Complementors raise the value of your product"
+    },
+    {
+     "id": "S1",
+     "kind": "seminar",
+     "short": "CS1",
+     "title": "Case Seminar 1: Crown Cork & Seal",
+     "slots": {
+      "1": {
+       "start": "2026-11-05T09:15:00Z",
+       "end": "2026-11-05T11:00:00Z",
+       "room": "A542",
+       "teacher": "Anton Andersson"
+      },
+      "2": {
+       "start": "2026-11-05T09:15:00Z",
+       "end": "2026-11-05T11:00:00Z",
+       "room": "A342",
+       "teacher": "Mikael Eriksson"
+      },
+      "3": {
+       "start": "2026-11-04T09:15:00Z",
+       "end": "2026-11-04T11:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "4": {
+       "start": "2026-11-04T09:15:00Z",
+       "end": "2026-11-04T11:00:00Z",
+       "room": "A320",
+       "teacher": "Nenad Apostoloski"
+      },
+      "5": {
+       "start": "2026-11-04T07:15:00Z",
+       "end": "2026-11-04T09:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "6": {
+       "start": "2026-11-04T07:15:00Z",
+       "end": "2026-11-04T09:00:00Z",
+       "room": "A320",
+       "teacher": "Anton Andersson"
+      },
+      "7": {
+       "start": "2026-11-05T12:15:00Z",
+       "end": "2026-11-05T14:00:00Z",
+       "room": "A542",
+       "teacher": "Nenad Apostoloski"
+      },
+      "8": {
+       "start": "2026-11-05T12:15:00Z",
+       "end": "2026-11-05T14:00:00Z",
+       "room": "RM1",
+       "teacher": "Mikael Eriksson"
+      }
+     },
+     "note": "Primary focus: industry structural analysis with the competitive forces. Secondary: generic competitive strategy. Readings: the case, Porter (2008) The Five Competitive Forces That Shape Strategy, Strategy Note: The Case Method, chapters 2, 4, 8 and 9.\n• Team hand-in: one page, uploaded on Canvas by 15:00 the day before. Pass or fail.\n• The \"discussed in class\" questions are not part of the hand-in.\n• Bring your hand-in, take notes, expect cold calls: everyone must be able to argue it.\n• Prep here: drill the five forces and generic strategies first, then apply them to the case.",
+     "due": {
+      "dayBefore": "15:00",
+      "title": "CS1 hand-in"
+     }
+    },
+    {
+     "id": "S2",
+     "kind": "seminar",
+     "short": "CS2",
+     "title": "Case Seminar 2: Coca-Cola in 2011: in search of a new model",
+     "slots": {
+      "1": {
+       "start": "2026-11-13T14:15:00Z",
+       "end": "2026-11-13T16:00:00Z",
+       "room": "A542",
+       "teacher": "Anton Andersson"
+      },
+      "2": {
+       "start": "2026-11-13T14:15:00Z",
+       "end": "2026-11-13T16:00:00Z",
+       "room": "B310",
+       "teacher": "Mikael Eriksson"
+      },
+      "3": {
+       "start": "2026-11-12T09:15:00Z",
+       "end": "2026-11-12T11:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "4": {
+       "start": "2026-11-12T09:15:00Z",
+       "end": "2026-11-12T11:00:00Z",
+       "room": "A320",
+       "teacher": "Nenad Apostoloski"
+      },
+      "5": {
+       "start": "2026-11-13T09:15:00Z",
+       "end": "2026-11-13T11:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "6": {
+       "start": "2026-11-13T09:15:00Z",
+       "end": "2026-11-13T11:00:00Z",
+       "room": "A350",
+       "teacher": "Anton Andersson"
+      },
+      "7": {
+       "start": "2026-11-12T12:15:00Z",
+       "end": "2026-11-12T14:00:00Z",
+       "room": "A542",
+       "teacher": "Nenad Apostoloski"
+      },
+      "8": {
+       "start": "2026-11-12T12:15:00Z",
+       "end": "2026-11-12T14:00:00Z",
+       "room": "A320",
+       "teacher": "Mikael Eriksson"
+      }
+     },
+     "note": "Primary focus: macro environment and sustainability (PESTEL), differentiation, corporate strategy (vertical integration and diversification). Secondary: competitive forces. Readings: the case, Porter (2008), chapters 3, 4, 8 and 9.\n• Team hand-in: one page by 15:00 the day before. Pass or fail.\n• Compare the economics of two linked businesses with the five forces, side by side.\n• Prep here: PESTEL drills, the differentiation unit and the logic of integration and diversification.",
+     "due": {
+      "dayBefore": "15:00",
+      "title": "CS2 hand-in"
+     }
+    },
+    {
+     "id": "S3",
+     "kind": "seminar",
+     "short": "S3",
+     "title": "Project tutorial: Strategy project tutorial, 20 minutes per team",
+     "slots": {
+      "1": {
+       "start": "2026-11-19T07:15:00Z",
+       "end": "2026-11-19T07:35:00Z",
+       "room": "B310"
+      },
+      "2": {
+       "start": "2026-11-19T07:15:00Z",
+       "end": "2026-11-19T07:35:00Z",
+       "room": "B310"
+      },
+      "3": {
+       "start": "2026-11-19T07:15:00Z",
+       "end": "2026-11-19T07:35:00Z",
+       "room": "B310"
+      },
+      "4": {
+       "start": "2026-11-19T07:15:00Z",
+       "end": "2026-11-19T07:35:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-11-19T07:15:00Z",
+       "end": "2026-11-19T07:35:00Z",
+       "room": "B310"
+      },
+      "6": {
+       "start": "2026-11-19T07:15:00Z",
+       "end": "2026-11-19T07:35:00Z",
+       "room": "B310"
+      },
+      "7": {
+       "start": "2026-11-19T07:15:00Z",
+       "end": "2026-11-19T07:35:00Z",
+       "room": "B310"
+      },
+      "8": {
+       "start": "2026-11-19T07:15:00Z",
+       "end": "2026-11-19T07:35:00Z",
+       "room": "B310"
+      }
+     },
+     "note": "Exact 20-minute slot for your team is posted on Canvas (19 or 20 Nov).\nA 20-minute tutorial for your working team on 19 or 20 November in B310. The exact time slot is posted under Strategy Project on Canvas.\n• Bring your project questions and draft structure.\n• Follow the Strategy Project Guide strictly: number of slides, focus, format.\n• Use the Project lab: checklist, frameworks and the tutor as a project coach (AI is allowed for the project this year)."
+    },
+    {
+     "id": "S4",
+     "kind": "seminar",
+     "short": "CS4",
+     "title": "Case Seminar 4: Walmart (A–F): bricks and mortar, e-commerce and sustainability",
+     "slots": {
+      "1": {
+       "start": "2026-11-23T09:15:00Z",
+       "end": "2026-11-23T11:00:00Z",
+       "room": "A542",
+       "teacher": "Yalan Wang"
+      },
+      "2": {
+       "start": "2026-11-24T12:15:00Z",
+       "end": "2026-11-24T14:00:00Z",
+       "room": "A542",
+       "teacher": "Yalan Wang"
+      },
+      "3": {
+       "start": "2026-11-25T14:15:00Z",
+       "end": "2026-11-25T16:00:00Z",
+       "room": "A542",
+       "teacher": "Yalan Wang"
+      },
+      "4": {
+       "start": "2026-11-24T09:15:00Z",
+       "end": "2026-11-24T11:00:00Z",
+       "room": "A542",
+       "teacher": "Yalan Wang"
+      },
+      "5": {
+       "start": "2026-11-23T14:15:00Z",
+       "end": "2026-11-23T16:00:00Z",
+       "room": "A542",
+       "teacher": "Yalan Wang"
+      },
+      "6": {
+       "start": "2026-11-25T12:15:00Z",
+       "end": "2026-11-25T14:00:00Z",
+       "room": "A542",
+       "teacher": "Yalan Wang"
+      },
+      "7": {
+       "start": "2026-11-24T14:15:00Z",
+       "end": "2026-11-24T16:00:00Z",
+       "room": "A542",
+       "teacher": "Yalan Wang"
+      },
+      "8": {
+       "start": "2026-11-23T12:15:00Z",
+       "end": "2026-11-23T14:00:00Z",
+       "room": "A542",
+       "teacher": "Yalan Wang"
+      }
+     },
+     "note": "Primary focus: resources and capabilities, VRIO, imitation barriers, sustainability, stakeholders and CSR. Secondary: competitive forces and generic strategy. Teacher: Yalan Wang. Graded team hand-in (3 slides, 5%) due Tue 17 Nov 15:00 for every group.\n• Attendance is required for the hand-in grade. No make-up, no online or partial attendance.\n• Base the analysis only on the cases A–F, plus case G: pp. 154–157 in the 14th ed. (in your 13th ed. it is the chapter 5 case example, Reconfiguring retailing resources).\n• Read the team assignment PDF carefully: format, slide count and your team's specific questions.\n• Prep here: VRIO, value chain and stakeholder drills on other firms."
+    },
+    {
+     "id": "S5",
+     "kind": "seminar",
+     "short": "CS5",
+     "title": "Case Seminar 5: Matching Dell and Apple Inc. 2023",
+     "slots": {
+      "1": {
+       "start": "2026-12-01T14:15:00Z",
+       "end": "2026-12-01T17:00:00Z",
+       "room": "A542",
+       "teacher": "Anton Andersson"
+      },
+      "2": {
+       "start": "2026-11-30T14:15:00Z",
+       "end": "2026-11-30T17:00:00Z",
+       "room": "A542",
+       "teacher": "Mikael Eriksson"
+      },
+      "3": {
+       "start": "2026-12-01T14:15:00Z",
+       "end": "2026-12-01T17:00:00Z",
+       "room": "B310",
+       "teacher": "Claes Bohman"
+      },
+      "4": {
+       "start": "2026-11-30T14:15:00Z",
+       "end": "2026-11-30T17:00:00Z",
+       "room": "A342",
+       "teacher": "Nenad Apostoloski"
+      },
+      "5": {
+       "start": "2026-11-30T09:15:00Z",
+       "end": "2026-11-30T12:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "6": {
+       "start": "2026-11-30T09:15:00Z",
+       "end": "2026-11-30T12:00:00Z",
+       "room": "A133",
+       "teacher": "Anton Andersson"
+      },
+      "7": {
+       "start": "2026-12-01T09:15:00Z",
+       "end": "2026-12-01T12:00:00Z",
+       "room": "A542",
+       "teacher": "Nenad Apostoloski"
+      },
+      "8": {
+       "start": "2026-12-01T09:15:00Z",
+       "end": "2026-12-01T12:00:00Z",
+       "room": "A342",
+       "teacher": "Mikael Eriksson"
+      }
+     },
+     "note": "A 3-hour seminar. Primary focus: business models, generic strategies, strategic groups and mobility barriers, VRIO, imitation barriers and path dependency. Secondary: industry evolution, Du Pont, products versus platforms. Apple: focus on pp. 4–7 and 9–13.\n• Team hand-in: one page by 15:00 the day before. Pass or fail.\n• Du Pont: ROE = margin × asset turnover × leverage. Practise it in Case exam craft.\n• Prep here: strategic group maps, business models and imitation barriers.",
+     "due": {
+      "dayBefore": "15:00",
+      "title": "CS5 hand-in"
+     }
+    },
+    {
+     "id": "S6",
+     "kind": "seminar",
+     "short": "CS6",
+     "title": "Case Seminar 6: Video games: clouds on the horizon?",
+     "slots": {
+      "1": {
+       "start": "2026-12-04T09:15:00Z",
+       "end": "2026-12-04T11:00:00Z",
+       "room": "A542",
+       "teacher": "Anton Andersson"
+      },
+      "2": {
+       "start": "2026-12-04T14:15:00Z",
+       "end": "2026-12-04T16:00:00Z",
+       "room": "A342",
+       "teacher": "Mikael Eriksson"
+      },
+      "3": {
+       "start": "2026-12-04T14:15:00Z",
+       "end": "2026-12-04T16:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "4": {
+       "start": "2026-12-04T09:15:00Z",
+       "end": "2026-12-04T11:00:00Z",
+       "room": "A342",
+       "teacher": "Nenad Apostoloski"
+      },
+      "5": {
+       "start": "2026-12-04T12:15:00Z",
+       "end": "2026-12-04T14:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "6": {
+       "start": "2026-12-04T12:15:00Z",
+       "end": "2026-12-04T14:00:00Z",
+       "room": "A342",
+       "teacher": "Anton Andersson"
+      },
+      "7": {
+       "start": "2026-12-07T14:15:00Z",
+       "end": "2026-12-07T16:00:00Z",
+       "room": "RM1",
+       "teacher": "Nenad Apostoloski"
+      },
+      "8": {
+       "start": "2026-12-07T12:15:00Z",
+       "end": "2026-12-07T14:00:00Z",
+       "room": "RM1",
+       "teacher": "Mikael Eriksson"
+      }
+     },
+     "note": "Primary focus: two-sided and multisided platforms, complementors, indirect network effects, multihoming costs and disruptive strategies. Secondary: business models, products versus platforms.\n• Team hand-in: one page by 15:00 the day before. Pass or fail.\n• Know the difference between direct and indirect network effects.\n• Prep here: the platform unit and the disruptive innovation drills.",
+     "due": {
+      "dayBefore": "15:00",
+      "title": "CS6 hand-in"
+     }
+    },
+    {
+     "id": "S7",
+     "kind": "seminar",
+     "short": "S7",
+     "title": "Project seminar 1: Strategy project presentations and evaluations",
+     "slots": {
+      "1": {
+       "start": "2026-12-14T14:15:00Z",
+       "end": "2026-12-14T16:00:00Z",
+       "room": "A542",
+       "teacher": "Anton Andersson"
+      },
+      "2": {
+       "start": "2026-12-14T14:15:00Z",
+       "end": "2026-12-14T16:00:00Z",
+       "room": "A320",
+       "teacher": "Mikael Eriksson"
+      },
+      "3": {
+       "start": "2026-12-14T09:15:00Z",
+       "end": "2026-12-14T11:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "4": {
+       "start": "2026-12-14T09:15:00Z",
+       "end": "2026-12-14T11:00:00Z",
+       "room": "B310",
+       "teacher": "Nenad Apostoloski"
+      },
+      "5": {
+       "start": "2026-12-14T12:15:00Z",
+       "end": "2026-12-14T14:00:00Z",
+       "room": "A320",
+       "teacher": "Claes Bohman"
+      },
+      "6": {
+       "start": "2026-12-11T14:15:00Z",
+       "end": "2026-12-11T16:00:00Z",
+       "room": "B310",
+       "teacher": "Anton Andersson"
+      },
+      "7": {
+       "start": "2026-12-14T12:15:00Z",
+       "end": "2026-12-14T14:00:00Z",
+       "room": "A542",
+       "teacher": "Nenad Apostoloski"
+      },
+      "8": {
+       "start": "2026-12-11T12:15:00Z",
+       "end": "2026-12-11T14:00:00Z",
+       "room": "B310",
+       "teacher": "Mikael Eriksson"
+      }
+     },
+     "note": "Teams present their strategy projects and evaluate another team's project. The oral presentation and your evaluation can move the project grade up or down.\n• Attendance at your team's presentation and evaluation seminars is required.\n• Rehearse: clear storyline, frameworks applied to evidence, a firm recommendation."
+    },
+    {
+     "id": "S8",
+     "kind": "seminar",
+     "short": "S8",
+     "title": "Project seminar 2: Strategy project presentations and evaluations, round 2",
+     "slots": {
+      "1": {
+       "start": "2026-12-15T14:15:00Z",
+       "end": "2026-12-15T16:00:00Z",
+       "room": "A542",
+       "teacher": "Anton Andersson"
+      },
+      "2": {
+       "start": "2026-12-15T14:15:00Z",
+       "end": "2026-12-15T16:00:00Z",
+       "room": "A536",
+       "teacher": "Mikael Eriksson"
+      },
+      "3": {
+       "start": "2026-12-15T09:15:00Z",
+       "end": "2026-12-15T11:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "4": {
+       "start": "2026-12-15T09:15:00Z",
+       "end": "2026-12-15T11:00:00Z",
+       "room": "A342",
+       "teacher": "Nenad Apostoloski"
+      },
+      "5": {
+       "start": "2026-12-15T07:15:00Z",
+       "end": "2026-12-15T09:00:00Z",
+       "room": "A542",
+       "teacher": "Claes Bohman"
+      },
+      "6": {
+       "start": "2026-12-15T07:15:00Z",
+       "end": "2026-12-15T09:00:00Z",
+       "room": "A536",
+       "teacher": "Anton Andersson"
+      },
+      "7": {
+       "start": "2026-12-15T12:15:00Z",
+       "end": "2026-12-15T14:00:00Z",
+       "room": "A542",
+       "teacher": "Nenad Apostoloski"
+      },
+      "8": {
+       "start": "2026-12-15T12:15:00Z",
+       "end": "2026-12-15T14:00:00Z",
+       "room": "A342",
+       "teacher": "Mikael Eriksson"
+      }
+     },
+     "note": "The second round of project presentations and evaluations.\n• Attendance required.\n• Evaluating another team well: check frameworks, evidence, logic and the recommendation."
+    },
+    {
+     "id": "O0",
+     "kind": "deadline",
+     "title": "Case 4 team hand-in (5%)",
+     "start": "2026-11-17T14:00:00Z",
+     "note": "Three slides per team on Canvas by Tue 17 Nov 15:00, for every seminar group. Read the assignment PDF carefully."
+    },
+    {
+     "id": "O1",
+     "kind": "deadline",
+     "title": "Strategy project: digital hand-in",
+     "start": "2026-12-09T14:00:00Z",
+     "note": "Upload on Canvas by Wed 9 Dec 15:00. 30% of the grade."
+    },
+    {
+     "id": "O2",
+     "kind": "deadline",
+     "title": "Strategy project: paper hand-in",
+     "start": "2026-12-10T08:00:00Z",
+     "note": "Paper copy by Thu 10 Dec 09:00."
+    },
+    {
+     "id": "O3",
+     "kind": "exam",
+     "title": "Final exam",
+     "start": "2026-12-22T08:00:00Z",
+     "note": "Four-hour open-book case exam on DigiExam. Bring your printed textbook (13th or 14th edition) and a valid ID. 65% of the grade.",
+     "short": "Tenta",
+     "end": "2026-12-22T12:00:00Z",
+     "room": "Room not yet set"
+    },
+    {
+     "id": "O4",
+     "kind": "deadline",
+     "title": "Sustainability Reflections: team hand-in",
+     "start": "2027-01-08T14:00:00Z",
+     "note": "Pass or fail, due Fri 8 Jan 15:00."
+    }
+   ]
+  },
+  {
+   "id": "be802",
+   "code": "BE802",
+   "name": "Global Challenges II",
+   "color": "#5856d6",
+   "groups": 8,
+   "imported": "2026-10-28",
+   "events": [
+    {
+     "id": "L1",
+     "kind": "lecture",
+     "short": "L1",
+     "title": "Lecture 1: Introduction: the triple focus",
+     "start": "2026-11-03T12:15:00Z",
+     "end": "2026-11-03T14:00:00Z",
+     "room": "Aula (A)",
+     "note": "Meet the teaching team, the \"triple focus\" (systems, social, self), the course structure, the new pen-and-paper exam and how AI can help or hinder your learning. There is a pre-course survey. Nothing to prepare.\n• The course has three blocks: outer (systems), other (social), inner (self)\n• The exam is 50 %, on paper: a brief case, multiple choice and short questions\n• Team case 30 %, individual reflection 20 %, three learning journals pass/fail"
+    },
+    {
+     "id": "L2",
+     "kind": "lecture",
+     "short": "L2",
+     "title": "Lecture 2: Block II: social awareness",
+     "start": "2026-11-16T09:15:00Z",
+     "end": "2026-11-16T11:00:00Z",
+     "room": "Aula (A)",
+     "note": "Opens Block II (social awareness) and perspective skills: how our groups form us, why we see the same problem but do not feel equally obliged to act, and how bridging and perspective-taking open or close collaboration. The L1 slides preview it with \"bounded awareness\": the limits of focus, System 1 and 2, failing to see or seek out information (Chugh) and satisficing (Simon).\n• Readings for Block II: Van Bavel & Pereira (2018) for Seminar 4, Bazerman et al. (2002) for Seminar 5\n• Seminar 5 gives the \"meet someone from another bubble\" assignment for Learning Journal 2"
+    },
+    {
+     "id": "L3",
+     "kind": "lecture",
+     "short": "L3",
+     "title": "Lecture 3: Block III: self-awareness",
+     "start": "2026-11-25T07:15:00Z",
+     "end": "2026-11-25T09:00:00Z",
+     "room": "Aula (A)",
+     "note": "Opens Block III (self-awareness) and exam preparation: why we do so little when we know so much, resilience versus resignation, what sympathy can and cannot do, the pressure to never settle, and focus. Canvas has not posted the Block III readings yet.\n• Self-awareness is the \"inner\" of the triple focus\n• Everything you learn here feeds the individual reflection"
+    },
+    {
+     "id": "S1",
+     "kind": "seminar",
+     "short": "S1",
+     "title": "Seminar 1: The Core",
+     "slots": {
+      "1": {
+       "start": "2026-11-06T09:15:00Z",
+       "end": "2026-11-06T11:00:00Z",
+       "room": "A536"
+      },
+      "2": {
+       "start": "2026-11-06T09:15:00Z",
+       "end": "2026-11-06T11:00:00Z",
+       "room": "A138"
+      },
+      "3": {
+       "start": "2026-11-06T09:15:00Z",
+       "end": "2026-11-06T11:00:00Z",
+       "room": "A133"
+      },
+      "4": {
+       "start": "2026-11-06T09:15:00Z",
+       "end": "2026-11-06T11:00:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-11-06T07:15:00Z",
+       "end": "2026-11-06T09:00:00Z",
+       "room": "A536"
+      },
+      "6": {
+       "start": "2026-11-06T07:15:00Z",
+       "end": "2026-11-06T09:00:00Z",
+       "room": "A138"
+      },
+      "7": {
+       "start": "2026-11-06T07:15:00Z",
+       "end": "2026-11-06T09:00:00Z",
+       "room": "A133"
+      },
+      "8": {
+       "start": "2026-11-06T07:15:00Z",
+       "end": "2026-11-06T09:00:00Z",
+       "room": "B310"
+      }
+     },
+     "note": "Getting to know each other, how to create a good learning environment, and the barriers to learning about global challenges. The team project starts here. Screen-free: bring paper and pen.\n• Read the three articles before you come; they are not gone through in class\n• Reflect: what surprised you, how do you learn best, how can the class become a good learning environment?\n• Uncomfortable knowledge: denial, dismissal, diversion, displacement"
+    },
+    {
+     "id": "S2",
+     "kind": "seminar",
+     "short": "S2",
+     "title": "Seminar 2: Systems Thinking",
+     "slots": {
+      "1": {
+       "start": "2026-11-10T07:15:00Z",
+       "end": "2026-11-10T09:00:00Z",
+       "room": "A336"
+      },
+      "2": {
+       "start": "2026-11-10T07:15:00Z",
+       "end": "2026-11-10T09:00:00Z",
+       "room": "A138"
+      },
+      "3": {
+       "start": "2026-11-10T07:15:00Z",
+       "end": "2026-11-10T09:00:00Z",
+       "room": "A133"
+      },
+      "4": {
+       "start": "2026-11-10T07:15:00Z",
+       "end": "2026-11-10T09:00:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-11-10T09:15:00Z",
+       "end": "2026-11-10T11:00:00Z",
+       "room": "A336"
+      },
+      "6": {
+       "start": "2026-11-10T09:15:00Z",
+       "end": "2026-11-10T11:00:00Z",
+       "room": "A138"
+      },
+      "7": {
+       "start": "2026-11-10T09:15:00Z",
+       "end": "2026-11-10T11:00:00Z",
+       "room": "A133"
+      },
+      "8": {
+       "start": "2026-11-10T09:15:00Z",
+       "end": "2026-11-10T11:00:00Z",
+       "room": "B310"
+      }
+     },
+     "note": "Seeing the whole instead of the parts: patterns and connections that shape how systems behave, and what you can do from your own position in the system. You will be asked questions, so come prepared.\n• Key concepts: synthesis and analysis, system boundaries, leverage points, feedback loops, complexity\n• Read Bansal & Birkinshaw, Meadows (1999) and Meadows (2001); watch the 4-minute video\n• The ideas are more demanding than last time"
+    },
+    {
+     "id": "S3",
+     "kind": "seminar",
+     "short": "S3",
+     "title": "Seminar 3: Cases & Team Project",
+     "slots": {
+      "1": {
+       "start": "2026-11-12T12:15:00Z",
+       "end": "2026-11-12T14:00:00Z",
+       "room": "A336"
+      },
+      "2": {
+       "start": "2026-11-12T12:15:00Z",
+       "end": "2026-11-12T14:00:00Z",
+       "room": "A536"
+      },
+      "3": {
+       "start": "2026-11-12T12:15:00Z",
+       "end": "2026-11-12T14:00:00Z",
+       "room": "A138"
+      },
+      "4": {
+       "start": "2026-11-12T12:15:00Z",
+       "end": "2026-11-12T14:00:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-11-12T14:15:00Z",
+       "end": "2026-11-12T16:00:00Z",
+       "room": "A336"
+      },
+      "6": {
+       "start": "2026-11-12T14:15:00Z",
+       "end": "2026-11-12T16:00:00Z",
+       "room": "A536"
+      },
+      "7": {
+       "start": "2026-11-12T14:15:00Z",
+       "end": "2026-11-12T16:00:00Z",
+       "room": "A138"
+      },
+      "8": {
+       "start": "2026-11-13T07:15:00Z",
+       "end": "2026-11-13T09:00:00Z",
+       "room": "B310"
+      }
+     },
+     "note": "Systems thinking on several cases (no need to read them before). The second hour is a first round of project presentations and feedback: your team should have picked its organisation and done initial desktop research.\n• All team members need to be there\n• Bring your organisation, its problem and a first sketch of its system\n• Learning Journal 1 is due the next day at 17:00"
+    },
+    {
+     "id": "S4",
+     "kind": "seminar",
+     "short": "S4",
+     "title": "Seminar 4: Social Identities",
+     "slots": {
+      "1": {
+       "start": "2026-11-17T12:15:00Z",
+       "end": "2026-11-17T14:00:00Z",
+       "room": "A336"
+      },
+      "2": {
+       "start": "2026-11-17T12:15:00Z",
+       "end": "2026-11-17T14:00:00Z",
+       "room": "A138"
+      },
+      "3": {
+       "start": "2026-11-16T14:15:00Z",
+       "end": "2026-11-16T16:00:00Z",
+       "room": "A542"
+      },
+      "4": {
+       "start": "2026-11-17T12:15:00Z",
+       "end": "2026-11-17T14:00:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-11-17T14:15:00Z",
+       "end": "2026-11-17T16:00:00Z",
+       "room": "A336"
+      },
+      "6": {
+       "start": "2026-11-17T14:15:00Z",
+       "end": "2026-11-17T16:00:00Z",
+       "room": "A138"
+      },
+      "7": {
+       "start": "2026-11-17T14:15:00Z",
+       "end": "2026-11-17T16:00:00Z",
+       "room": "A133"
+      },
+      "8": {
+       "start": "2026-11-18T07:15:00Z",
+       "end": "2026-11-18T09:00:00Z",
+       "room": "B310"
+      }
+     },
+     "note": "First seminar of Block II: how our groups form us. Read Van Bavel & Pereira (2018) on the partisan brain before you come.\n• Identity goals (belonging, status, moral…) compete with accuracy goals\n• Partisan identity can bend reasoning, memory, implicit evaluation and even perception\n• Check Canvas a few days before in case more readings are added"
+    },
+    {
+     "id": "S5",
+     "kind": "seminar",
+     "short": "S5",
+     "title": "Seminar 5: Ethical Awareness",
+     "slots": {
+      "1": {
+       "start": "2026-11-19T09:15:00Z",
+       "end": "2026-11-19T11:00:00Z",
+       "room": "A336"
+      },
+      "2": {
+       "start": "2026-11-19T09:15:00Z",
+       "end": "2026-11-19T11:00:00Z",
+       "room": "A536"
+      },
+      "3": {
+       "start": "2026-11-19T09:15:00Z",
+       "end": "2026-11-19T11:00:00Z",
+       "room": "A133"
+      },
+      "4": {
+       "start": "2026-11-19T09:15:00Z",
+       "end": "2026-11-19T11:00:00Z",
+       "room": "A320"
+      },
+      "5": {
+       "start": "2026-11-19T12:15:00Z",
+       "end": "2026-11-19T14:00:00Z",
+       "room": "A336"
+      },
+      "6": {
+       "start": "2026-11-19T12:15:00Z",
+       "end": "2026-11-19T14:00:00Z",
+       "room": "A138"
+      },
+      "7": {
+       "start": "2026-11-19T12:15:00Z",
+       "end": "2026-11-19T14:00:00Z",
+       "room": "A133"
+      },
+      "8": {
+       "start": "2026-11-19T12:15:00Z",
+       "end": "2026-11-19T14:00:00Z",
+       "room": "A320"
+      }
+     },
+     "note": "Why we can see the same problem and still not feel obliged to act. Read Bazerman, Loewenstein & Moore (2002) before you come. You also get the bubble assignment here: meet someone from another \"bubble\", aim for a constructive dialogue and look for common ground. You report on it at Seminar 6, and it becomes Learning Journal 2.\n• Self-serving bias is mostly unconscious, so honest people are affected too\n• Ambiguity, attachment, approval; familiarity, discounting, escalation\n• Curiosity is key; keep the person you meet anonymous in anything you write"
+    },
+    {
+     "id": "S6",
+     "kind": "seminar",
+     "short": "S6",
+     "title": "Seminar 6: Bridging & Project Planning",
+     "slots": {
+      "1": {
+       "start": "2026-11-23T12:15:00Z",
+       "end": "2026-11-23T14:00:00Z",
+       "room": "A336"
+      },
+      "2": {
+       "start": "2026-11-23T12:15:00Z",
+       "end": "2026-11-23T14:00:00Z",
+       "room": "A138"
+      },
+      "3": {
+       "start": "2026-11-23T12:15:00Z",
+       "end": "2026-11-23T14:00:00Z",
+       "room": "A133"
+      },
+      "4": {
+       "start": "2026-11-23T12:15:00Z",
+       "end": "2026-11-23T14:00:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-11-23T09:15:00Z",
+       "end": "2026-11-23T11:00:00Z",
+       "room": "A336"
+      },
+      "6": {
+       "start": "2026-11-23T09:15:00Z",
+       "end": "2026-11-23T11:00:00Z",
+       "room": "A138"
+      },
+      "7": {
+       "start": "2026-11-23T09:15:00Z",
+       "end": "2026-11-23T11:00:00Z",
+       "room": "A133"
+      },
+      "8": {
+       "start": "2026-11-23T09:15:00Z",
+       "end": "2026-11-23T11:00:00Z",
+       "room": "B310"
+      }
+     },
+     "note": "You report on your meeting with someone from another bubble. Learning Journal 2 is due the next day.\n• Have your story ready: what happened, what surprised you, what theory explains it"
+    },
+    {
+     "id": "S7",
+     "kind": "seminar",
+     "short": "S7",
+     "title": "Seminar 7: Sympathy & Cynicism",
+     "slots": {
+      "1": {
+       "start": "2026-12-01T09:15:00Z",
+       "end": "2026-12-01T11:00:00Z",
+       "room": "A336"
+      },
+      "2": {
+       "start": "2026-12-01T09:15:00Z",
+       "end": "2026-12-01T11:00:00Z",
+       "room": "A138"
+      },
+      "3": {
+       "start": "2026-12-01T09:15:00Z",
+       "end": "2026-12-01T11:00:00Z",
+       "room": "A133"
+      },
+      "4": {
+       "start": "2026-12-01T09:15:00Z",
+       "end": "2026-12-01T11:00:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-12-01T14:15:00Z",
+       "end": "2026-12-01T16:00:00Z",
+       "room": "A336"
+      },
+      "6": {
+       "start": "2026-12-01T14:15:00Z",
+       "end": "2026-12-01T16:00:00Z",
+       "room": "A138"
+      },
+      "7": {
+       "start": "2026-12-01T14:15:00Z",
+       "end": "2026-12-01T16:00:00Z",
+       "room": "A350"
+      },
+      "8": {
+       "start": "2026-12-02T07:15:00Z",
+       "end": "2026-12-02T09:00:00Z",
+       "room": "A342"
+      }
+     },
+     "note": "First seminar of Block III. Canvas has not posted its readings yet; the app's topics are previews.\n• Check Canvas for the readings a few days before"
+    },
+    {
+     "id": "S8",
+     "kind": "seminar",
+     "short": "S8",
+     "title": "Seminar 8: Limitless Potentiality",
+     "slots": {
+      "1": {
+       "start": "2026-12-03T09:15:00Z",
+       "end": "2026-12-03T11:00:00Z",
+       "room": "A336"
+      },
+      "2": {
+       "start": "2026-12-03T09:15:00Z",
+       "end": "2026-12-03T11:00:00Z",
+       "room": "A536"
+      },
+      "3": {
+       "start": "2026-12-03T09:15:00Z",
+       "end": "2026-12-03T11:00:00Z",
+       "room": "A542"
+      },
+      "4": {
+       "start": "2026-12-03T09:15:00Z",
+       "end": "2026-12-03T11:00:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-12-03T12:15:00Z",
+       "end": "2026-12-03T14:00:00Z",
+       "room": "A336"
+      },
+      "6": {
+       "start": "2026-12-03T12:15:00Z",
+       "end": "2026-12-03T14:00:00Z",
+       "room": "A536"
+      },
+      "7": {
+       "start": "2026-12-03T12:15:00Z",
+       "end": "2026-12-03T14:00:00Z",
+       "room": "A320"
+      },
+      "8": {
+       "start": "2026-12-03T12:15:00Z",
+       "end": "2026-12-03T14:00:00Z",
+       "room": "B310"
+      }
+     },
+     "note": "The pressure to never settle and endless actualising: what is success? Canvas has not posted the readings yet.\n• Check Canvas for the readings a few days before"
+    },
+    {
+     "id": "S9",
+     "kind": "seminar",
+     "short": "S9",
+     "title": "Seminar 9: Concluding Seminar",
+     "slots": {
+      "1": {
+       "start": "2026-12-07T12:15:00Z",
+       "end": "2026-12-07T14:00:00Z",
+       "room": "RM2"
+      },
+      "2": {
+       "start": "2026-12-07T12:15:00Z",
+       "end": "2026-12-07T14:00:00Z",
+       "room": "A536"
+      },
+      "3": {
+       "start": "2026-12-07T12:15:00Z",
+       "end": "2026-12-07T14:00:00Z",
+       "room": "A542"
+      },
+      "4": {
+       "start": "2026-12-07T12:15:00Z",
+       "end": "2026-12-07T14:00:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-12-07T07:15:00Z",
+       "end": "2026-12-07T09:00:00Z",
+       "room": "A536"
+      },
+      "6": {
+       "start": "2026-12-07T07:15:00Z",
+       "end": "2026-12-07T09:00:00Z",
+       "room": "A542"
+      },
+      "7": {
+       "start": "2026-12-07T07:15:00Z",
+       "end": "2026-12-07T09:00:00Z",
+       "room": "A320"
+      },
+      "8": {
+       "start": "2026-12-07T07:15:00Z",
+       "end": "2026-12-07T09:00:00Z",
+       "room": "B310"
+      }
+     },
+     "note": "The Examination page says there is a mock exam at the last seminar, so you see what the real paper looks like. Canvas has not posted the details yet.\n• Take the app's quick mock before this seminar\n• Bring your list of weak topics"
+    },
+    {
+     "id": "S10",
+     "kind": "seminar",
+     "short": "S10",
+     "title": "Seminar 10: Final team presentations",
+     "slots": {
+      "1": {
+       "start": "2026-12-14T12:15:00Z",
+       "end": "2026-12-14T14:00:00Z",
+       "room": "A536"
+      },
+      "2": {
+       "start": "2026-12-14T12:15:00Z",
+       "end": "2026-12-14T14:00:00Z",
+       "room": "A138"
+      },
+      "3": {
+       "start": "2026-12-14T12:15:00Z",
+       "end": "2026-12-14T14:00:00Z",
+       "room": "A133"
+      },
+      "4": {
+       "start": "2026-12-10T07:15:00Z",
+       "end": "2026-12-10T09:00:00Z",
+       "room": "B310"
+      },
+      "5": {
+       "start": "2026-12-14T14:15:00Z",
+       "end": "2026-12-14T16:00:00Z",
+       "room": "A536"
+      },
+      "6": {
+       "start": "2026-12-14T14:15:00Z",
+       "end": "2026-12-14T16:00:00Z",
+       "room": "A138"
+      },
+      "7": {
+       "start": "2026-12-14T14:15:00Z",
+       "end": "2026-12-14T16:00:00Z",
+       "room": "A133"
+      },
+      "8": {
+       "start": "2026-12-11T09:15:00Z",
+       "end": "2026-12-11T11:00:00Z",
+       "room": "B310"
+      }
+     },
+     "note": "Mandatory for everyone. Five minutes per team, then randomised questions to any team member about the case.\n• Stay inside five minutes\n• Everyone must be able to answer questions about any part of the case"
+    },
+    {
+     "id": "O0",
+     "kind": "deadline",
+     "title": "Learning Journal 1 due",
+     "start": "2026-11-13T16:00:00Z",
+     "note": "Reflect on Block I (L1, S1–S3). Max 500 words, pass/fail, collective feedback."
+    },
+    {
+     "id": "O1",
+     "kind": "deadline",
+     "title": "Learning Journal 2 due",
+     "start": "2026-11-24T16:00:00Z",
+     "note": "Reflect on your bubble meeting using Block II. Max 500 words. Then give feedback to two peers within 48 hours."
+    },
+    {
+     "id": "O2",
+     "kind": "deadline",
+     "title": "Peer feedback on LJ2",
+     "start": "2026-11-26T16:00:00Z",
+     "note": "About 48 hours after LJ2: comment on how two peers can improve their writing. Empathic and constructive."
+    },
+    {
+     "id": "O3",
+     "kind": "deadline",
+     "title": "Team case due",
+     "start": "2026-12-14T08:00:00Z",
+     "note": "PDF, max 2 000 words (+10 %), before 09:00. Late only earns a Pass. 30 % of the grade."
+    },
+    {
+     "id": "O4",
+     "kind": "deadline",
+     "title": "Individual reflection due",
+     "start": "2026-12-15T16:00:00Z",
+     "note": "PDF, max 1 000 words (+10 %), before 17:00. 20 % of the grade."
+    },
+    {
+     "id": "O5",
+     "kind": "office",
+     "title": "Open office about the exam",
+     "start": "2026-12-15T08:15:00Z",
+     "note": "Teachers answer questions about the exam all day. No appointment needed.",
+     "end": "2026-12-15T16:00:00Z",
+     "room": "Atrium"
+    },
+    {
+     "id": "O6",
+     "kind": "exam",
+     "title": "Exam",
+     "start": "2026-12-18T08:00:00Z",
+     "note": "Pen and paper, 3 hours: a brief case, multiple choice and short questions. 50 % of the grade.",
+     "short": "Tenta",
+     "end": "2026-12-18T11:00:00Z",
+     "room": "Room not yet set"
+    },
+    {
+     "id": "O7",
+     "kind": "deadline",
+     "title": "Learning Journal 3 due",
+     "start": "2027-01-11T16:00:00Z",
+     "note": "1–2 pages on how you will, or will not, use the course. Pass/fail; needed for the final grade (and CSN). Make-up assignments are due the same day."
+    }
+   ]
+  },
+  {
+   "id": "be603",
+   "code": "BE603",
+   "name": "Data Analytics III",
+   "color": "#ff9500",
+   "groups": 8,
+   "imported": "2026-10-27",
+   "events": [
+    {
+     "id": "L1",
+     "kind": "lecture",
+     "short": "L1",
+     "title": "Lecture 1: Introduction to the course, research design and data analytics",
+     "start": "2026-10-27T14:15:00Z",
+     "end": "2026-10-27T16:00:00Z",
+     "room": "Aula",
+     "note": "What the course covers, how research questions become hypotheses, causality versus correlation, and how data is collected and protected.\n• A research question must be answerable with data\n• Correlation is not causation: think about confounders\n• Null and alternative hypotheses, type I and type II errors"
+    },
+    {
+     "id": "L2",
+     "kind": "lecture",
+     "short": "L2",
+     "title": "Lecture 2: Linear models",
+     "start": "2026-11-02T07:15:00Z",
+     "end": "2026-11-02T09:00:00Z",
+     "room": "Online",
+     "note": "OLS from the ground up: intercept and slope, dummies, reading regression output, R² and the F-test, and the assumptions behind it all.\n• Interpret a slope as the change in y for one more unit of x, holding others fixed\n• t = coefficient / standard error\n• R² always rises when you add variables; adjusted R² does not"
+    },
+    {
+     "id": "L3",
+     "kind": "lecture",
+     "short": "L3",
+     "title": "Lecture 3: Moderating effects",
+     "start": "2026-11-09T09:15:00Z",
+     "end": "2026-11-09T11:00:00Z",
+     "room": "Online",
+     "note": "Interaction terms: when the effect of x depends on a third variable. Dummy and continuous moderators, centring and simple slopes.\n• With x·z in the model, the effect of x is b₁ + b₃·z\n• Centre continuous moderators so main effects mean something\n• Quadratic terms capture curves; the turning point is −b₁/(2b₂)"
+    },
+    {
+     "id": "L4",
+     "kind": "lecture",
+     "short": "L4",
+     "title": "Lecture 4: Time series",
+     "start": "2026-11-13T12:15:00Z",
+     "end": "2026-11-13T14:00:00Z",
+     "room": "Online",
+     "note": "Trend, seasonality and breaks, autocorrelation, stationarity tests and distributed lag models.\n• ADF: H₀ is a unit root. KPSS: H₀ is stationarity\n• Difference a non-stationary series before regressing\n• Long-run multiplier = sum of the lag coefficients"
+    },
+    {
+     "id": "L5",
+     "kind": "lecture",
+     "short": "L5",
+     "title": "Lecture 5: Panel data",
+     "start": "2026-11-16T12:15:00Z",
+     "end": "2026-11-16T14:00:00Z",
+     "room": "Online",
+     "note": "Between versus within variation, pooled OLS against entity fixed effects, time effects and clustered standard errors.\n• Fixed effects remove everything constant within an entity\n• Time-invariant variables drop out of an FE model\n• Cluster standard errors by entity"
+    },
+    {
+     "id": "L6",
+     "kind": "lecture",
+     "short": "L6",
+     "title": "Lecture 6",
+     "start": "2026-11-20T07:15:00Z",
+     "end": "2026-11-20T09:00:00Z",
+     "room": "Aula",
+     "note": "No topic posted on Canvas yet. It sits between the econometrics and machine learning parts."
+    },
+    {
+     "id": "L7",
+     "kind": "lecture",
+     "short": "L7",
+     "title": "Lecture 7: Unsupervised learning",
+     "start": "2026-11-25T09:15:00Z",
+     "end": "2026-11-25T11:00:00Z",
+     "room": "Online",
+     "note": "Machine learning basics and clustering: k-means step by step, WCSS, the elbow method and silhouette scores.\n• K-means: assign to the nearest centroid, then recompute the means\n• Scale features before using distances\n• TSS = WCSS + BCSS"
+    },
+    {
+     "id": "L8",
+     "kind": "lecture",
+     "short": "L8",
+     "title": "Lecture 8: Supervised learning",
+     "start": "2026-11-30T07:15:00Z",
+     "end": "2026-11-30T09:00:00Z",
+     "room": "Online",
+     "note": "Classification with KNN and decision trees, Gini impurity, train and test splits, and judging classifiers with a confusion matrix.\n• Gini = 1 − Σ pₖ²\n• Sensitivity = TP/(TP+FN), specificity = TN/(TN+FP)\n• Kappa compares accuracy with chance agreement"
+    },
+    {
+     "id": "L9",
+     "kind": "lecture",
+     "short": "L9",
+     "title": "Lecture 9",
+     "start": "2026-12-07T09:15:00Z",
+     "end": "2026-12-07T11:00:00Z",
+     "room": "Aula",
+     "note": "No topic posted on Canvas yet. Last lecture before the summary seminar."
+    },
+    {
+     "id": "S1",
+     "kind": "seminar",
+     "short": "S1",
+     "title": "Seminar 1: Python, pandas and the salary distribution",
+     "slots": {
+      "1": {
+       "start": "2026-10-29T12:15:00Z",
+       "end": "2026-10-29T14:00:00Z",
+       "room": "A536"
+      },
+      "2": {
+       "start": "2026-10-29T12:15:00Z",
+       "end": "2026-10-29T14:00:00Z",
+       "room": "A133"
+      },
+      "3": {
+       "start": "2026-10-29T12:15:00Z",
+       "end": "2026-10-29T14:00:00Z",
+       "room": "A138"
+      },
+      "4": {
+       "start": "2026-10-29T12:15:00Z",
+       "end": "2026-10-29T14:00:00Z",
+       "room": "A350"
+      },
+      "5": {
+       "start": "2026-10-29T14:15:00Z",
+       "end": "2026-10-29T16:00:00Z",
+       "room": "A536"
+      },
+      "6": {
+       "start": "2026-10-29T14:15:00Z",
+       "end": "2026-10-29T16:00:00Z",
+       "room": "A133"
+      },
+      "7": {
+       "start": "2026-10-29T14:15:00Z",
+       "end": "2026-10-29T16:00:00Z",
+       "room": "A138"
+      },
+      "8": {
+       "start": "2026-10-29T14:15:00Z",
+       "end": "2026-10-29T16:00:00Z",
+       "room": "A350"
+      }
+     },
+     "note": "Load the salary data with pandas, describe it and look at its distribution.\n• Mean versus median for skewed data\n• df.describe(), groupby and histograms\n• What a standard deviation tells you"
+    },
+    {
+     "id": "S2",
+     "kind": "seminar",
+     "short": "S2",
+     "title": "Seminar 2: OLS, politeness and perceived performance",
+     "slots": {
+      "1": {
+       "start": "2026-11-04T12:15:00Z",
+       "end": "2026-11-04T14:00:00Z",
+       "room": "A542"
+      },
+      "2": {
+       "start": "2026-11-04T12:15:00Z",
+       "end": "2026-11-04T14:00:00Z",
+       "room": "A133"
+      },
+      "3": {
+       "start": "2026-11-04T12:15:00Z",
+       "end": "2026-11-04T14:00:00Z",
+       "room": "A536"
+      },
+      "4": {
+       "start": "2026-11-04T12:15:00Z",
+       "end": "2026-11-04T14:00:00Z",
+       "room": "RM1"
+      },
+      "5": {
+       "start": "2026-11-04T09:15:00Z",
+       "end": "2026-11-04T11:00:00Z",
+       "room": "A342"
+      },
+      "6": {
+       "start": "2026-11-04T09:15:00Z",
+       "end": "2026-11-04T11:00:00Z",
+       "room": "A133"
+      },
+      "7": {
+       "start": "2026-11-04T09:15:00Z",
+       "end": "2026-11-04T11:00:00Z",
+       "room": "A138"
+      },
+      "8": {
+       "start": "2026-11-04T09:15:00Z",
+       "end": "2026-11-04T11:00:00Z",
+       "room": "A350"
+      }
+     },
+     "note": "Simple and multiple regression on the politeness data. Read the output and write the conclusion in words.\n• Interpreting coefficients and dummies\n• t-tests and p-values for single coefficients\n• R², adjusted R² and the F-test",
+     "due": {
+      "at": "2026-11-03T14:00:00Z",
+      "title": "S2 hand-in"
+     }
+    },
+    {
+     "id": "S3",
+     "kind": "seminar",
+     "short": "S3",
+     "title": "Seminar 3: Moderation, biases and teaching evaluations",
+     "slots": {
+      "1": {
+       "start": "2026-11-11T07:15:00Z",
+       "end": "2026-11-11T09:00:00Z",
+       "room": "A536"
+      },
+      "2": {
+       "start": "2026-11-11T07:15:00Z",
+       "end": "2026-11-11T09:00:00Z",
+       "room": "A133"
+      },
+      "3": {
+       "start": "2026-11-11T07:15:00Z",
+       "end": "2026-11-11T09:00:00Z",
+       "room": "A138"
+      },
+      "4": {
+       "start": "2026-11-11T07:15:00Z",
+       "end": "2026-11-11T09:00:00Z",
+       "room": "A350"
+      },
+      "5": {
+       "start": "2026-11-11T09:15:00Z",
+       "end": "2026-11-11T11:00:00Z",
+       "room": "A536"
+      },
+      "6": {
+       "start": "2026-11-11T09:15:00Z",
+       "end": "2026-11-11T11:00:00Z",
+       "room": "A133"
+      },
+      "7": {
+       "start": "2026-11-11T09:15:00Z",
+       "end": "2026-11-11T11:00:00Z",
+       "room": "A138"
+      },
+      "8": {
+       "start": "2026-11-11T09:15:00Z",
+       "end": "2026-11-11T11:00:00Z",
+       "room": "A350"
+      }
+     },
+     "note": "Does the effect of beauty on teaching evaluations differ by group? Interaction terms on real data.\n• Writing out the effect of x for each group\n• Simple slopes at ±1 SD\n• Centring before interacting",
+     "due": {
+      "at": "2026-11-10T14:00:00Z",
+      "title": "S3 hand-in"
+     }
+    },
+    {
+     "id": "S4",
+     "kind": "seminar",
+     "short": "S4",
+     "title": "Seminar 4: Time series, distributed lags, inflation and the oil crisis",
+     "slots": {
+      "1": {
+       "start": "2026-11-18T09:15:00Z",
+       "end": "2026-11-18T11:00:00Z",
+       "room": "A536"
+      },
+      "2": {
+       "start": "2026-11-18T09:15:00Z",
+       "end": "2026-11-18T11:00:00Z",
+       "room": "A133"
+      },
+      "3": {
+       "start": "2026-11-18T09:15:00Z",
+       "end": "2026-11-18T11:00:00Z",
+       "room": "A138"
+      },
+      "4": {
+       "start": "2026-11-18T09:15:00Z",
+       "end": "2026-11-18T11:00:00Z",
+       "room": "A350"
+      },
+      "5": {
+       "start": "2026-11-18T12:15:00Z",
+       "end": "2026-11-18T14:00:00Z",
+       "room": "A536"
+      },
+      "6": {
+       "start": "2026-11-18T12:15:00Z",
+       "end": "2026-11-18T14:00:00Z",
+       "room": "A133"
+      },
+      "7": {
+       "start": "2026-11-18T12:15:00Z",
+       "end": "2026-11-18T14:00:00Z",
+       "room": "A138"
+      },
+      "8": {
+       "start": "2026-11-18T12:15:00Z",
+       "end": "2026-11-18T14:00:00Z",
+       "room": "A350"
+      }
+     },
+     "note": "Decompose air passenger data, test for stationarity and estimate a distributed lag model of inflation.\n• Reading ADF and KPSS together\n• Cumulative and long-run multipliers\n• HAC standard errors",
+     "due": {
+      "at": "2026-11-17T14:00:00Z",
+      "title": "S4 hand-in"
+     }
+    },
+    {
+     "id": "S5",
+     "kind": "seminar",
+     "short": "S5",
+     "title": "Seminar 5: Fixed effects, crime and justice strategies",
+     "slots": {
+      "1": {
+       "start": "2026-11-24T14:15:00Z",
+       "end": "2026-11-24T16:00:00Z",
+       "room": "A536"
+      },
+      "2": {
+       "start": "2026-11-24T14:15:00Z",
+       "end": "2026-11-24T16:00:00Z",
+       "room": "A133"
+      },
+      "3": {
+       "start": "2026-11-24T14:15:00Z",
+       "end": "2026-11-24T16:00:00Z",
+       "room": "A138"
+      },
+      "4": {
+       "start": "2026-11-24T14:15:00Z",
+       "end": "2026-11-24T16:00:00Z",
+       "room": "A350"
+      },
+      "5": {
+       "start": "2026-11-24T12:15:00Z",
+       "end": "2026-11-24T14:00:00Z",
+       "room": "A536"
+      },
+      "6": {
+       "start": "2026-11-24T12:15:00Z",
+       "end": "2026-11-24T14:00:00Z",
+       "room": "A133"
+      },
+      "7": {
+       "start": "2026-11-24T12:15:00Z",
+       "end": "2026-11-24T14:00:00Z",
+       "room": "A138"
+      },
+      "8": {
+       "start": "2026-11-24T12:15:00Z",
+       "end": "2026-11-24T14:00:00Z",
+       "room": "A350"
+      }
+     },
+     "note": "Pooled OLS against entity and time fixed effects on crime data across states.\n• Why pooled OLS can be biased\n• What fixed effects absorb\n• Clustered standard errors",
+     "due": {
+      "at": "2026-11-23T14:00:00Z",
+      "title": "S5 hand-in"
+     }
+    },
+    {
+     "id": "S7",
+     "kind": "seminar",
+     "short": "S7",
+     "title": "Seminar 7: Clusters, music and danceability",
+     "slots": {
+      "1": {
+       "start": "2026-11-27T09:15:00Z",
+       "end": "2026-11-27T11:00:00Z",
+       "room": "A536"
+      },
+      "2": {
+       "start": "2026-11-27T09:15:00Z",
+       "end": "2026-11-27T11:00:00Z",
+       "room": "A133"
+      },
+      "3": {
+       "start": "2026-11-27T09:15:00Z",
+       "end": "2026-11-27T11:00:00Z",
+       "room": "A138"
+      },
+      "4": {
+       "start": "2026-11-27T09:15:00Z",
+       "end": "2026-11-27T11:00:00Z",
+       "room": "A350"
+      },
+      "5": {
+       "start": "2026-11-27T12:15:00Z",
+       "end": "2026-11-27T14:00:00Z",
+       "room": "A536"
+      },
+      "6": {
+       "start": "2026-11-27T12:15:00Z",
+       "end": "2026-11-27T14:00:00Z",
+       "room": "A133"
+      },
+      "7": {
+       "start": "2026-11-27T12:15:00Z",
+       "end": "2026-11-27T14:00:00Z",
+       "room": "A138"
+      },
+      "8": {
+       "start": "2026-11-27T12:15:00Z",
+       "end": "2026-11-27T14:00:00Z",
+       "room": "A350"
+      }
+     },
+     "note": "K-means on music features: scale, cluster, choose K and describe the clusters.\n• Standardise before clustering\n• Elbow plot and silhouette\n• Describing clusters from their centroids",
+     "due": {
+      "at": "2026-11-26T14:00:00Z",
+      "title": "S7 hand-in"
+     }
+    },
+    {
+     "id": "S8",
+     "kind": "seminar",
+     "short": "S8",
+     "title": "Seminar 8: Classifiers, Granny Smith and Golden Delicious",
+     "slots": {
+      "1": {
+       "start": "2026-12-02T09:15:00Z",
+       "end": "2026-12-02T11:00:00Z",
+       "room": "A536"
+      },
+      "2": {
+       "start": "2026-12-02T09:15:00Z",
+       "end": "2026-12-02T11:00:00Z",
+       "room": "A542"
+      },
+      "3": {
+       "start": "2026-12-02T09:15:00Z",
+       "end": "2026-12-02T11:00:00Z",
+       "room": "A138"
+      },
+      "4": {
+       "start": "2026-12-02T09:15:00Z",
+       "end": "2026-12-02T11:00:00Z",
+       "room": "A350"
+      },
+      "5": {
+       "start": "2026-12-02T12:15:00Z",
+       "end": "2026-12-02T14:00:00Z",
+       "room": "A320"
+      },
+      "6": {
+       "start": "2026-12-02T12:15:00Z",
+       "end": "2026-12-02T14:00:00Z",
+       "room": "A542"
+      },
+      "7": {
+       "start": "2026-12-02T12:15:00Z",
+       "end": "2026-12-02T14:00:00Z",
+       "room": "A138"
+      },
+      "8": {
+       "start": "2026-12-02T12:15:00Z",
+       "end": "2026-12-02T14:00:00Z",
+       "room": "A350"
+      }
+     },
+     "note": "KNN and decision trees on the fruit data. Compare them with a confusion matrix.\n• Choosing K\n• Reading a tree split and its Gini\n• Sensitivity, specificity and kappa",
+     "due": {
+      "at": "2026-12-01T14:00:00Z",
+      "title": "S8 hand-in"
+     }
+    },
+    {
+     "id": "S9",
+     "kind": "seminar",
+     "short": "S9",
+     "title": "Seminar 9: Summary, prior final exam and solutions",
+     "slots": {
+      "1": {
+       "start": "2026-12-14T07:15:00Z",
+       "end": "2026-12-14T09:00:00Z",
+       "room": "A536"
+      },
+      "2": {
+       "start": "2026-12-14T07:15:00Z",
+       "end": "2026-12-14T09:00:00Z",
+       "room": "A133"
+      },
+      "3": {
+       "start": "2026-12-14T07:15:00Z",
+       "end": "2026-12-14T09:00:00Z",
+       "room": "A138"
+      },
+      "4": {
+       "start": "2026-12-14T07:15:00Z",
+       "end": "2026-12-14T09:00:00Z",
+       "room": "A350"
+      },
+      "5": {
+       "start": "2026-12-14T09:15:00Z",
+       "end": "2026-12-14T11:00:00Z",
+       "room": "A536"
+      },
+      "6": {
+       "start": "2026-12-14T09:15:00Z",
+       "end": "2026-12-14T11:00:00Z",
+       "room": "A133"
+      },
+      "7": {
+       "start": "2026-12-14T09:15:00Z",
+       "end": "2026-12-14T11:00:00Z",
+       "room": "A138"
+      },
+      "8": {
+       "start": "2026-12-14T09:15:00Z",
+       "end": "2026-12-14T11:00:00Z",
+       "room": "A350"
+      }
+     },
+     "note": "The whole course in one session, worked through the prior final exam.\n• Try the prior exam timed before this seminar\n• Bring your list of weak topics"
+    },
+    {
+     "id": "O0",
+     "kind": "deadline",
+     "title": "Group project due",
+     "start": "2027-01-07T22:59:00Z",
+     "note": "Submit on Canvas before 23:59."
+    },
+    {
+     "id": "O1",
+     "kind": "exam",
+     "title": "Final exam",
+     "start": "2027-01-11T08:00:00Z",
+     "note": "Written exam, 4 hours.",
+     "short": "Tenta",
+     "end": "2027-01-11T12:00:00Z",
+     "room": "Room not yet set"
+    }
+   ]
+  },
+  {
+   "id": "be102",
+   "code": "BE102",
+   "name": "Management II",
+   "color": "#af52de",
+   "groups": 0,
+   "imported": "2026-11-08",
+   "events": [
+    {
+     "id": "X",
+     "kind": "exam",
+     "title": "Re-take",
+     "allDay": "2027-01-18",
+     "note": "Time and room not announced when this was imported. Check the exam portal."
+    }
+   ]
+  },
+  {
+   "id": "be302",
+   "code": "BE302",
+   "name": "Accounting II",
+   "color": "#a2845e",
+   "groups": 0,
+   "imported": "2026-11-08",
+   "events": [
+    {
+     "id": "X",
+     "kind": "exam",
+     "title": "Re-take (date not confirmed)",
+     "allDay": "2027-01-12",
+     "note": "The date is the trainer’s guess from earlier years. Check Canvas and the exam office."
+    }
+   ]
+  }
+ ]
+}
