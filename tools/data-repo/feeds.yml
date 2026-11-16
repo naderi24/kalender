@@ -1,0 +1,56 @@
+name: Hämta kalenderlänkar
+# Hör hemma i det privata datarepot (kalender-data) som .github/workflows/feeds.yml.
+# Laddar ner länkarna i feeds.json till feeds/<id>.ics, så att Kalender-appen kan läsa dem.
+# Körs varannan timme medan det finns länkar, och direkt när listan ändras (se feeds-switch.yml).
+# När listan är tom stänger jobbet av sig självt, så att det inte drar några Actions-minuter.
+on:
+  schedule:
+    - cron: '23 */2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: feeds
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hämta länkarna
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -u
+          mkdir -p feeds
+          list='{"feeds":[]}'
+          [ -f feeds.json ] && list=$(cat feeds.json)
+          keep=" "
+          n=0
+          while IFS=$'\t' read -r id url; do
+            case "$id" in ''|*[!a-z0-9]*) continue ;; esac
+            case "$url" in https://*|http://*) ;; *) continue ;; esac
+            n=$((n+1)); keep="$keep$id.ics "
+            if curl -fsL --proto '=https,http' --proto-redir '=https,http' --max-time 45 --max-filesize 8000000 -A 'kalender-feeds' -o "feeds/$id.tmp" "$url" && grep -q 'BEGIN:VCALENDAR' "feeds/$id.tmp"; then
+              grep -v '^DTSTAMP' "feeds/$id.tmp" > "feeds/$id.ics" || true
+              echo "hämtad: $id"
+            else
+              echo "::warning::Kunde inte hämta länk $id"
+            fi
+            rm -f "feeds/$id.tmp"
+          done < <(printf '%s' "$list" | jq -r '.feeds[]? | [.id, .url] | @tsv')
+          for f in feeds/*.ics; do
+            [ -e "$f" ] || continue
+            case "$keep" in *" $(basename "$f") "*) ;; *) rm -f "$f" ;; esac
+          done
+          git config user.name 'kalender-bot'
+          git config user.email 'kalender-bot@users.noreply.github.com'
+          git add -A feeds 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -q -m 'Kalenderlänkar: uppdaterade'
+            git pull -q --rebase
+            git push -q
+          fi
+          if [ "$n" -eq 0 ]; then gh workflow disable feeds.yml --repo "$GITHUB_REPOSITORY" || true; fi

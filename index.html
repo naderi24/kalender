@@ -14,33 +14,32 @@
 <link rel="icon" type="image/png" href="icon-180.png">
 <link rel="stylesheet" href="styles.css">
 <script>
-/* apply a chosen theme before the first paint */
-try { var t = JSON.parse(localStorage.getItem('kalender-v1') || '{}').theme; if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+/* apply the chosen theme and accent colour before the first paint */
+try { var s = JSON.parse(localStorage.getItem('kalender-v1') || '{}'), r = document.documentElement;
+  if (s.theme === 'light' || s.theme === 'dark') r.setAttribute('data-theme', s.theme);
+  if (s.prefs && s.prefs.accent) r.setAttribute('data-accent', s.prefs.accent); } catch (e) {}
 </script>
 </head>
 <body>
 <div id="app">
   <header class="top">
-    <div class="top-row">
-      <h1 id="title" class="title"></h1>
-      <div class="top-actions">
-        <button class="ib nav-arrow" id="prev" type="button" aria-label="Föregående"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button class="ib nav-arrow" id="next" type="button" aria-label="Nästa"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-        <button class="ib" id="search" type="button" aria-label="Sök"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
-        <button class="ib" id="add" type="button" aria-label="Ny händelse"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
-      </div>
+    <h1 id="title" class="title"></h1>
+    <div class="actions glass">
+      <button class="ib nav-arrow" id="prev" type="button" aria-label="Föregående"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="ib nav-arrow" id="next" type="button" aria-label="Nästa"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      <button class="ib" id="search" type="button" aria-label="Sök"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
+      <button class="ib" id="add" type="button" aria-label="Ny händelse"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
     </div>
-    <div class="seg" id="seg" role="tablist" aria-label="Vy">
-      <button type="button" role="tab" data-view="day">Dag</button>
-      <button type="button" role="tab" data-view="week">Vecka</button>
-      <button type="button" role="tab" data-view="month">Månad</button>
-    </div>
+    <div id="seg" class="seg-slot"></div>
   </header>
   <main id="view"></main>
-  <nav class="bottom">
-    <button type="button" id="today">Idag</button>
-    <button type="button" id="cals">Kalendrar</button>
-    <button type="button" id="ai" class="ai-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>Fråga AI</button>
+  <nav class="dock" aria-label="Verktyg">
+    <button type="button" id="today" class="glass pill">Idag</button>
+    <div class="glass pill duo">
+      <button type="button" id="cals">Kalendrar</button>
+      <button type="button" id="settings" aria-label="Inställningar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+    </div>
+    <button type="button" id="ai" class="glass pill tinted" aria-label="Fråga AI"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span class="wide">Fråga</span>AI</button>
   </nav>
 </div>
 <div id="sheets"></div>

@@ -17,7 +17,7 @@ function systemPrompt(api) {
   const groups = Object.entries(api.state.groups).map(([k, g]) => k.toUpperCase() + ' grupp ' + g).join(', ');
   return `Du är assistenten i en personlig kalenderapp som används av en student på Handelshögskolan i Stockholm. Användaren skriver till dig från appen, oftast på mobilen, och läser svaret i en smal chattruta. Svara därför kort och på svenska, i vanlig text utan markdown (inga asterisker, rubriker eller tabeller). Skriv tider som 14:15 och datum som "tis 17 nov".
 
-Kalendern innehåller två slags händelser. Kursschemat (föreläsningar, seminarier för användarens grupp, inlämningar och tentor) har id som "be202:S4". Användarens egna händelser har id som "e4k2…", och en enskild förekomst av en händelse som upprepas har id som "e4k2…@2026-11-24". Inlämningar visas som ett block på 30 minuter som slutar vid inlämningstiden.
+Kalendern innehåller två slags händelser. Kursschemat (föreläsningar, seminarier för användarens grupp, inlämningar och tentor) har id som "be202:S4". Händelser från kalenderlänkar (prenumerationer) har id som börjar med "s:" och kan bara läsas, inte ändras eller tas bort. Användarens egna händelser har id som "e4k2…", och en enskild förekomst av en händelse som upprepas har id som "e4k2…@2026-11-24". Inlämningar visas som ett block på 30 minuter som slutar vid inlämningstiden.
 
 Läs alltid kalendern med verktygen innan du påstår något om den eller ändrar i den. Ändringar du gör syns direkt, och användaren kan ångra allt du gjort i ett svar med en knapp. Genomför därför det användaren ber om när uppdraget är tydligt, och fråga bara när något väsentligt saknas, till exempel vilken dag som menas. När du letar lediga tider: ge två till fyra konkreta förslag som passar det användaren vill göra, och lägg bara in något om användaren bad dig boka. Att flytta eller ta bort en schemahändelse ändrar bara användarens egen vy, inte det riktiga schemat, så nämn det om det är relevant. Avsluta med en mening om vad du gjorde eller hittade.
 
@@ -98,6 +98,7 @@ export function makeTools(api, betaTool, ctx) {
         id: { type: 'string' }, title: { type: 'string' }, start: { type: 'string', description: 'YYYY-MM-DDTHH:MM, eller YYYY-MM-DD för heldag' }, end: { type: 'string' },
         all_day: { type: 'boolean' }, location: { type: 'string' }, notes: { type: 'string' }, calendar: { type: 'string' } }, required: ['id'], additionalProperties: false },
       run: (i) => {
+        if (String(i.id).startsWith('s:')) return 'Fel: händelsen kommer från en kalenderlänk och kan inte ändras här.';
         const o = api.findOcc(i.id); if (!o) return 'Fel: hittar ingen händelse med id ' + i.id;
         const t = parseTimes(api, i, o); if (t.error) return 'Fel: ' + t.error;
         api.applyEdit(o, { title: i.title != null ? String(i.title).slice(0, 200) : o.title, loc: i.location != null ? i.location : o.loc, notes: i.notes != null ? i.notes : o.notes, ...t,
@@ -112,6 +113,7 @@ export function makeTools(api, betaTool, ctx) {
       description: 'Tar bort en egen händelse, eller döljer en schemahändelse i användarens vy. Ett id med @datum tar bara bort den förekomsten.',
       inputSchema: { type: 'object', properties: { id: { type: 'string' } }, required: ['id'], additionalProperties: false },
       run: (i) => {
+        if (String(i.id).startsWith('s:')) return 'Fel: händelsen kommer från en kalenderlänk och kan inte ändras här.';
         const o = api.findOcc(i.id); if (!o) return 'Fel: hittar ingen händelse med id ' + i.id;
         api.applyDelete(o, o.occ ? 'one' : 'all');
         changed('Tar bort ' + o.title);

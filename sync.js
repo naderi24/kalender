@@ -1,13 +1,17 @@
 /* Sync between devices through one JSON file in a private GitHub repo (<user>/kalender-data, file kalender.json).
 
    The file is a "doc": four collections whose entries each carry the time they last changed,
-     { app:'kalender', v:1, events:{id:{u,v}}, over:{key:{u,v}}, cals:{id:{u,v}}, set:{groups:{u,v}, hidden:{u,v}} }
+     { app:'kalender', v:2, events:{id:{u,v}}, over:{key:{u,v}}, cals:{id:{u,v}}, subs:{id:{u,v}}, set:{groups:{u,v}, hidden:{u,v}} }
    u = time of the last change (ms), v = the value, or null when the thing was deleted.
    Two docs merge entry by entry: the newer one wins, and on a tie the copy on GitHub wins, so every device ends up the same.
-   Nothing is ever dropped from the file; a deleted entry stays as {u, v:null} so an old device cannot bring it back. */
+   Nothing is ever dropped from the file; a deleted entry stays as {u, v:null} so an old device cannot bring it back.
+
+   The same repo also relays calendar links: the app writes the list to feeds.json, a GitHub Actions workflow there
+   downloads each link to feeds/<id>.ics, and the app reads those files (readFile/writeFile below). */
 
 const API = 'https://api.github.com', FILE = 'kalender.json', REPO_NAME = 'kalender-data', LS_CFG = 'kalender-sync';
-const COLS = ['events', 'over', 'cals', 'set'];
+const COLS = ['events', 'over', 'cals', 'subs', 'set'];
+const DOC_V = 2;       /* 2 added subs; a device still on version 1 refuses to write rather than drop them */
 export const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new?name=Kalender-synk&description=' +
   encodeURIComponent('Låter Kalender-appen läsa och skriva i ' + REPO_NAME) + '&contents=write&expires_in=none';
 
@@ -18,11 +22,11 @@ export function stable(v) {
   return JSON.stringify(v === undefined ? null : v);
 }
 const clone = (v) => JSON.parse(JSON.stringify(v));
-export const emptyDoc = () => ({ app: 'kalender', v: 1, events: {}, over: {}, cals: {}, set: {} });
+export const emptyDoc = () => ({ app: 'kalender', v: DOC_V, events: {}, over: {}, cals: {}, subs: {}, set: {} });
 
 /* ---------- state <-> doc ---------- */
 export function toDoc(s) {
-  const d = emptyDoc(), ou = s.ou || {}, cu = s.cu || {}, fu = s.fu || {};
+  const d = emptyDoc(), ou = s.ou || {}, cu = s.cu || {}, fu = s.fu || {}, su = s.su || {};
   for (const ev of s.events) {
     if (ev.del) d.events[ev.id] = { u: ev.upd || 0, v: null };
     else { const v = { ...ev }; delete v.upd; d.events[ev.id] = { u: ev.upd || 0, v }; }
@@ -30,6 +34,8 @@ export function toDoc(s) {
   for (const k of new Set([...Object.keys(s.over), ...Object.keys(ou)])) d.over[k] = { u: ou[k] || 0, v: s.over[k] || null };
   for (const c of s.cals) d.cals[c.id] = { u: cu[c.id] || 0, v: c };
   for (const k of Object.keys(cu)) if (!d.cals[k]) d.cals[k] = { u: cu[k], v: null };
+  for (const c of (s.subs || [])) d.subs[c.id] = { u: su[c.id] || 0, v: c };
+  for (const k of Object.keys(su)) if (!d.subs[k]) d.subs[k] = { u: su[k], v: null };
   d.set.groups = { u: fu.groups || 0, v: s.groups || {} };
   d.set.hidden = { u: fu.hidden || 0, v: s.hidden || [] };
   return clone(d);     /* a doc never shares objects with the state it was read from */
@@ -44,6 +50,9 @@ export function applyDoc(s, d) {
   const cals = []; s.cu = {};
   for (const id of inOrder(s.cals.map((c) => c.id), d.cals)) { s.cu[id] = d.cals[id].u; if (d.cals[id].v) cals.push({ ...d.cals[id].v, id }); }
   s.cals = cals;
+  const subs = []; s.su = {};
+  for (const id of inOrder((s.subs || []).map((c) => c.id), d.subs || {})) { s.su[id] = d.subs[id].u; if (d.subs[id].v) subs.push({ ...d.subs[id].v, id }); }
+  s.subs = subs;
   s.fu = {};
   if (d.set.groups) { s.groups = d.set.groups.v || {}; s.fu.groups = d.set.groups.u; }
   if (d.set.hidden) { s.hidden = d.set.hidden.v || []; s.fu.hidden = d.set.hidden.u; }
@@ -52,6 +61,7 @@ export function applyDoc(s, d) {
 /* marks what differs from `known` (the doc as it was at the last save) as changed now; things that vanished become deletions */
 export function stampDoc(d, known, now) {
   for (const c of COLS) {
+    if (!d[c]) d[c] = {};
     for (const k of new Set([...Object.keys(d[c]), ...Object.keys(known[c] || {})])) {
       const cur = d[c][k], old = known[c] && known[c][k];
       if (!cur) d[c][k] = old.v != null ? { u: now, v: null } : old;
@@ -71,10 +81,10 @@ export function mergeDocs(local, remote) {
   const text = stable(doc);
   return { doc, localChanged: text !== stable(pick(local)), remoteChanged: text !== stable(pick(remote)) };
 }
-const pick = (d) => ({ app: 'kalender', v: 1, events: d.events || {}, over: d.over || {}, cals: d.cals || {}, set: d.set || {} });
+const pick = (d) => ({ app: 'kalender', v: DOC_V, events: d.events || {}, over: d.over || {}, cals: d.cals || {}, subs: d.subs || {}, set: d.set || {} });
 function checkDoc(d) {
   if (!d || typeof d !== 'object' || d.app !== 'kalender') throw new SyncError('Filen i ' + REPO_NAME + ' är inte en kalenderfil.', 'data');
-  if (d.v > 1) throw new SyncError('Kalendern är sparad av en nyare version av appen. Ladda om sidan.', 'data');
+  if (d.v > DOC_V) throw new SyncError('Kalendern är sparad av en nyare version av appen. Ladda om sidan.', 'data');
   for (const c of COLS) {
     if (d[c] == null) d[c] = {};
     if (typeof d[c] !== 'object' || Array.isArray(d[c])) throw new SyncError('Filen i ' + REPO_NAME + ' är skadad.', 'data');
@@ -141,6 +151,32 @@ export function createSync(host) {
     cache = { doc, sha: j.content.sha }; etag = null;
     return true;
   }
+  /* any other text file in the repo: null when it is not there */
+  async function readFile(path) {
+    if (!cfg) return null;
+    const r = await gh(cfg.token, 'GET', '/repos/' + cfg.repo + '/contents/' + path);
+    if (r.status === 404) return null;
+    if (!r.ok) throw new SyncError('GitHub svarade ' + r.status + '.', 'http');
+    const j = await r.json();
+    if (j.content) return { text: b64decode(j.content), sha: j.sha };
+    if (!j.size) return { text: '', sha: j.sha };
+    const rr = await gh(cfg.token, 'GET', '/repos/' + cfg.repo + '/contents/' + path, { raw: true });        /* over 1 MB */
+    return { text: await rr.text(), sha: j.sha };
+  }
+  async function writeFile(path, text, message) {
+    if (!cfg) return false;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const cur = await readFile(path);
+      if (cur && cur.text === text) return true;
+      const body = { message: message || 'Kalender: ' + path, content: b64encode(text) };
+      if (cur) body.sha = cur.sha;
+      const r = await gh(cfg.token, 'PUT', '/repos/' + cfg.repo + '/contents/' + path, { body });
+      if (r.ok) return true;
+      if (r.status !== 409 && r.status !== 422) throw new SyncError('GitHub svarade ' + r.status + '.', 'http');
+      await sleep(400);
+    }
+    return false;
+  }
   /* the first sync on a device: settings already on GitHub win over the ones here, unless GitHub has none */
   function firstTime(local, remote) {
     for (const k of ['groups', 'hidden']) {
@@ -203,6 +239,8 @@ export function createSync(host) {
       if (!ok) { const msg = status.error || 'Synken gick fel.'; cfg = null; keep(); set('idle'); throw new SyncError(msg, 'http'); }
       return repo;
     },
+    readFile: async (path) => { const f = await readFile(path); return f ? f.text : null; },
+    writeFile,
     disconnect() { clearTimeout(timer); cfg = null; cache = null; etag = null; keep(); set('idle'); },
   };
 }

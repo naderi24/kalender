@@ -1,0 +1,21 @@
+name: Kalenderlänkar ändrade
+# Hör hemma i det privata datarepot (kalender-data) som .github/workflows/feeds-switch.yml.
+# När appen ändrar listan i feeds.json: slå på den schemalagda hämtningen och kör den direkt.
+on:
+  push:
+    paths:
+      - feeds.json
+permissions:
+  actions: write
+  contents: read
+jobs:
+  switch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Starta hämtningen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow enable feeds.yml --repo "$GITHUB_REPOSITORY" || true
+          gh workflow run feeds.yml --repo "$GITHUB_REPOSITORY"
