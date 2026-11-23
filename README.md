@@ -67,6 +67,10 @@ De flesta kalendertjänster låter inte en webbsida läsa deras filer direkt. Ap
 
 Installera jobben genom att lägga de två filerna i `tools/data-repo/` i datarepots mapp `.github/workflows/`. De använder GitHub Actions-minuter i ett privat repo: ungefär en minut per körning, alltså runt 370 minuter i månaden när minst en länk är inkopplad (gratiskvoten är 2 000). Länkarna är hemliga adresser och finns bara i webbläsaren och i det privata datarepot.
 
+## Importera händelser
+
+Under Kalendrar → Importera händelser klistrar du in text från en kalenderfil (den börjar med `BEGIN:VCALENDAR`) eller väljer en `.ics`-fil. Händelserna läggs i en av dina egna kalendrar och går att ändra som vanligt. Upprepade händelser läggs in som enskilda tillfällen ungefär ett år framåt. Importerar du samma sak igen uppdateras händelserna i stället för att dubbleras.
+
 ## Inställningar
 
 Kugghjulet öppnar inställningarna: utseende (ljust, mörkt, accentfärg), veckans första dag, veckonummer, startvy, antal dagar i veckovyn, 24-timmarsklocka, när dagen börjar, radhöjd, längd och kalender för nya händelser, synk, AI-nyckel och säkerhetskopia. De gäller enheten och synkas inte.

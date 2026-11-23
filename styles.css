@@ -238,7 +238,8 @@ svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-l
 @keyframes pop{from{opacity:0;transform:scale(.93)}}
 .sheet-bar{flex:none;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;min-height:58px;padding:6px 10px 2px}
 .sheet-bar b{font-size:17px;font-weight:650}
-.bar-btn{height:40px;padding:0 15px;border-radius:999px;background:var(--fill);color:var(--ink);font-size:16px;font-weight:500;justify-self:start;transition:transform .32s var(--spring)}
+.sheet-bar b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-btn{white-space:nowrap;height:40px;padding:0 15px;border-radius:999px;background:var(--fill);color:var(--ink);font-size:16px;font-weight:500;justify-self:start;transition:transform .32s var(--spring)}
 .bar-btn:active{transform:scale(.94)}
 .bar-btn.r{justify-self:end}
 .bar-btn.strong{background:var(--tint);color:var(--on-tint);font-weight:650}

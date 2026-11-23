@@ -1,5 +1,5 @@
 /* Offline support: always try the network first so a new version shows up at once; fall back to the last copy when offline. */
-const CACHE = 'kalender-4';
+const CACHE = 'kalender-5';
 const SHELL = ['./', 'index.html', 'styles.css', 'app.js', 'sync.js', 'ics.js', 'ai.js', 'data/schedule.json', 'manifest.webmanifest', 'icon-180.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });

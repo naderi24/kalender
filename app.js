@@ -6,7 +6,7 @@
    - ai.js adds the assistant (the user's own Anthropic API key). */
 import { createSync, toDoc, applyDoc, stampDoc, TOKEN_URL } from './sync.js';
 import { parseICS, expandICS } from './ics.js';
-const VERSION = 'v4';
+const VERSION = 'v5';
 const LS = 'kalender-v1', LS_SCHED = 'kalender-schedule-v1', LS_FEED = 'kalender-feed-', LS_FEEDLIST = 'kalender-feedlist';
 let HOUR = 56;            /* px per hour in the timeline; set from the row-height setting, mirrored in --hh */
 const SNAP = 15;          /* minutes */
@@ -973,7 +973,8 @@ function openCalendars() {
         state.cals.length > 1 && !state.events.some((e) => e.cal === c.id && !e.del) ? h('button', { type: 'button', class: 'link danger', onclick: () => { state.cals = state.cals.filter((x) => x.id !== c.id); save(); render(); draw(); } }, 'Ta bort') : null)),
         h('div', { class: 'row' }, h('button', { type: 'button', class: 'link', onclick: () => {
           const name = (prompt('Vad ska kalendern heta?') || '').trim(); if (!name) return;
-          state.cals.push({ id: uid('k'), name: name.slice(0, 30), color: PALETTE.find((p) => !calendars().some((c) => c.color === p)) || PALETTE[state.cals.length % PALETTE.length] }); save(); draw(); } }, 'Lägg till kalender'))),
+          state.cals.push({ id: uid('k'), name: name.slice(0, 30), color: PALETTE.find((p) => !calendars().some((c) => c.color === p)) || PALETTE[state.cals.length % PALETTE.length] }); save(); draw(); } }, 'Lägg till kalender')),
+        h('div', { class: 'row' }, h('button', { type: 'button', class: 'link', onclick: openImport }, 'Importera händelser'))),
       grp('Kalenderlänkar', links.map((c) => h('div', { class: 'row' }, check(c),
         h('button', { type: 'button', class: 'row-l grow', onclick: () => openLink(c.sub) }, c.name, h('small', null, feedStatus(c.sub))), chevron())),
         h('div', { class: 'row' }, h('button', { type: 'button', class: 'link', onclick: () => openLink(null) }, 'Lägg till kalenderlänk'))),
@@ -1024,6 +1025,66 @@ function openLink(sub) {
   ] });
   url.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); done(s); } });
   if (isNew) setTimeout(() => url.focus(), 80);
+}
+
+/* ---------- import: events from pasted calendar text or an .ics file become own events ---------- */
+/* Every occurrence from two months back to about a year ahead becomes one event. Its id comes from the file's own id,
+   so importing the same thing again updates the events instead of doubling them. */
+function icsToEvents(text) {
+  const parsed = parseICS(text), out = [];
+  const hash = (str) => { let a = 5381, b = 52711; for (let i = 0; i < str.length; i++) { const c = str.charCodeAt(i); a = (a * 33 ^ c) >>> 0; b = (b * 33 ^ c) >>> 0; } return a.toString(36) + b.toString(36); };
+  for (const o of expandICS(parsed, addDays(today(), -60), addDays(today(), 400)).slice(0, 500)) {
+    const allDay = !!o.allDay, end = allDay ? addDays(o.end, -1) : o.end;
+    out.push({ id: 'i' + hash(o.key), title: (o.title || 'Händelse').slice(0, 200), loc: o.loc || '', notes: o.notes || '', allDay,
+      start: allDay ? ymd(o.start) + 'T00:00' : toLocal(o.start), end: allDay ? ymd(end < o.start ? o.start : end) + 'T00:00' : toLocal(end < o.start ? o.start : end), rr: null, ex: [] });
+  }
+  return { name: parsed.name, events: out };
+}
+function applyImport(events, calId) {
+  let added = 0, updated = 0;
+  const cal = state.cals.some((c) => c.id === calId) ? calId : state.cals[0].id;
+  for (const e of events) {
+    const i = state.events.findIndex((x) => x.id === e.id), ev = { ...e, cal, upd: Date.now() };
+    if (i < 0) { state.events.push(ev); added++; } else { state.events[i] = ev; updated++; }
+  }
+  return { added, updated };
+}
+function openImport() {
+  let found = { name: '', events: [] };
+  const text = h('textarea', { class: 'in', rows: 5, placeholder: 'Klistra in kalendertext här (börjar med BEGIN:VCALENDAR)', autocapitalize: 'off', spellcheck: 'false', 'aria-label': 'Kalendertext' });
+  const info = h('p', { class: 'note' }, 'Klistra in text från en kalenderfil, eller välj en .ics-fil. Händelserna blir dina egna och går att ändra.');
+  const cal = h('select', { class: 'pick', 'aria-label': 'Kalender' }, state.cals.map((c) => h('option', { value: c.id }, c.name))); cal.value = state.cals.some((c) => c.id === state.lastCal) ? state.lastCal : state.cals[0].id;
+  const read = () => {
+    const t = text.value.trim();
+    try { found = t ? icsToEvents(t) : { name: '', events: [] }; } catch (e) { found = { name: '', events: [] }; }
+    info.classList.toggle('err', !!t && !found.events.length);
+    if (!t) info.textContent = 'Klistra in text från en kalenderfil, eller välj en .ics-fil. Händelserna blir dina egna och går att ändra.';
+    else if (!found.events.length) info.textContent = 'Hittar inga händelser i texten. Den ska börja med BEGIN:VCALENDAR.';
+    else {
+      const first = fromLocal(found.events[0].start), last = fromLocal(found.events[found.events.length - 1].start);
+      const have = found.events.filter((e) => state.events.some((x) => x.id === e.id && !x.del)).length;
+      info.textContent = found.events.length + (found.events.length === 1 ? ' händelse' : ' händelser') + (found.name ? ' i ”' + found.name + '”' : '') + ', ' + fmt(first, { day: 'numeric', month: 'short' }) + '–' + fmt(last, { day: 'numeric', month: 'short', year: 'numeric' }) +
+        (have ? '. ' + have + ' finns redan och uppdateras.' : '.');
+    }
+  };
+  text.addEventListener('input', read);
+  const file = h('input', { type: 'file', accept: '.ics,text/calendar', hidden: true });
+  file.addEventListener('change', async () => { try { text.value = await file.files[0].text(); read(); } catch (e) { toast('Filen gick inte att läsa'); } });
+  function done(x) {
+    read();
+    if (!found.events.length) { toast('Inget att importera än'); return; }
+    const events = found.events, first = fromLocal(events[0].start);
+    x.close();
+    let res = { added: 0, updated: 0 };
+    mutate(() => { res = applyImport(events, cal.value); state.lastCal = cal.value; },
+      res.added + events.length ? (events.length === 1 ? '1 händelse importerad' : events.length + ' händelser importerade') : '');
+    if (first >= today()) { ui.date = dayStart(first); render(); }
+    if (calDraw) calDraw();
+  }
+  sheet({ title: 'Importera händelser', left: { label: 'Avbryt', fn: (x) => x.close() }, right: { label: 'Lägg till', strong: true, fn: done }, body: [
+    grp(null, row(null, text), h('div', { class: 'row' }, h('button', { type: 'button', class: 'link', onclick: () => file.click() }, 'Välj en .ics-fil'), file)),
+    info,
+    grp(null, row('Lägg i kalender', cal))] });
 }
 
 /* ---------- settings ---------- */
@@ -1160,7 +1221,7 @@ function onboard() {
 /* ---------- assistant ---------- */
 const api = {
   h, sheet, grp, row, toast, render, save, snapshot, restore, calendars, calOf, findOcc, freeSlots, applyNew, applyEdit, applyDelete,
-  occurrences, fromLocal, toLocal, ymd, hm, addDays, dayStart, fmtDay, fmtShort, openCalendars, openSettings, openDetail, refreshFeeds, feedOf, pref, setPref, go,
+  occurrences, fromLocal, toLocal, ymd, hm, addDays, dayStart, fmtDay, fmtShort, openCalendars, openSettings, openDetail, refreshFeeds, feedOf, pref, setPref, go, icsToEvents, applyImport,
   get state() { return state; }, get ui() { return ui; }, get sync() { return sync; },
 };
 window.kalender = api;   /* handy in the browser console */
