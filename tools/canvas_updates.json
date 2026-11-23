@@ -1,0 +1,12 @@
+{
+ "checked": "2026-11-23",
+ "about": "Changes found in the Canvas course calendars (courses 2805, 2828, 2923) after the SSE Trainers import of 27-28 Oct 2026. build_schedule.mjs applies them on top of the Trainers timetable. 'was' is the value the Trainers data had, so a later import that already carries the change is left alone.",
+ "updates": [
+  { "course": "be202", "id": "S5", "group": "6", "room": "A336", "was": "A133" },
+  { "course": "be802", "id": "S7", "group": "3", "room": "RM2", "was": "A133" },
+  { "course": "be802", "id": "S7", "group": "6", "room": "A342", "was": "A138" },
+  { "course": "be603", "id": "S8", "group": "3", "room": "A342", "was": "A138" },
+  { "course": "be603", "id": "S8", "group": "7", "room": "A550", "was": "A138" },
+  { "course": "be802", "title": "Open office about the exam", "start": "2026-12-15T07:15:00Z", "room": "Atrium zon4", "was": "Atrium" }
+ ]
+}

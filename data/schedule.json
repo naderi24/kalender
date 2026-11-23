@@ -1,6 +1,6 @@
 {
- "version": "2026-11-15",
- "source": "SSE Trainers (hämtat från Canvas 27–28 okt 2026)",
+ "version": "2026-11-23",
+ "source": "SSE Trainers (hämtat från Canvas 27–28 okt 2026, kontrollerat mot Canvas 23 nov 2026)",
  "tz": "Europe/Stockholm",
  "courses": [
   {
@@ -328,7 +328,7 @@
       "6": {
        "start": "2026-11-30T09:15:00Z",
        "end": "2026-11-30T12:00:00Z",
-       "room": "A133",
+       "room": "A336",
        "teacher": "Anton Andersson"
       },
       "7": {
@@ -916,7 +916,7 @@
       "3": {
        "start": "2026-12-01T09:15:00Z",
        "end": "2026-12-01T11:00:00Z",
-       "room": "A133"
+       "room": "RM2"
       },
       "4": {
        "start": "2026-12-01T09:15:00Z",
@@ -931,7 +931,7 @@
       "6": {
        "start": "2026-12-01T14:15:00Z",
        "end": "2026-12-01T16:00:00Z",
-       "room": "A138"
+       "room": "A342"
       },
       "7": {
        "start": "2026-12-01T14:15:00Z",
@@ -1132,10 +1132,10 @@
      "id": "O5",
      "kind": "office",
      "title": "Open office about the exam",
-     "start": "2026-12-15T08:15:00Z",
+     "start": "2026-12-15T07:15:00Z",
      "note": "Teachers answer questions about the exam all day. No appointment needed.",
      "end": "2026-12-15T16:00:00Z",
-     "room": "Atrium"
+     "room": "Atrium zon4"
     },
     {
      "id": "O6",
@@ -1587,7 +1587,7 @@
       "3": {
        "start": "2026-12-02T09:15:00Z",
        "end": "2026-12-02T11:00:00Z",
-       "room": "A138"
+       "room": "A342"
       },
       "4": {
        "start": "2026-12-02T09:15:00Z",
@@ -1607,7 +1607,7 @@
       "7": {
        "start": "2026-12-02T12:15:00Z",
        "end": "2026-12-02T14:00:00Z",
-       "room": "A138"
+       "room": "A550"
       },
       "8": {
        "start": "2026-12-02T12:15:00Z",

@@ -25,6 +25,8 @@ Schemat byggs från tidtabellerna i SSE Trainers (`courses/<kurs>/js/c-schedule.
 node tools/build_schedule.mjs <mapp med courses/...>
 ```
 
+Ändringar som har gjorts i Canvas efter att SSE Trainers hämtade schemat (oftast salsbyten) står i `tools/canvas_updates.json` och läggs på automatiskt när schemat byggs. Varje rad anger kurs, händelse, grupp och ny sal eller tid, och filen har ett datum för när den senast kontrollerades mot Canvas.
+
 Publicera sedan `data/schedule.json`. Appen hämtar den nya filen nästa gång den öppnas. Egna ändringar av schemahändelser ligger kvar.
 
 ## Bunta om SDK:t

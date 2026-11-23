@@ -69,7 +69,30 @@ courses.push({ id: 'be102', code: 'BE102', name: 'Management II', color: '#af52d
 courses.push({ id: 'be302', code: 'BE302', name: 'Accounting II', color: '#a2845e', groups: 0, imported: '2026-11-08', events: [
   { id: 'X', kind: 'exam', title: 'Re-take (date not confirmed)', allDay: '2027-01-12', note: 'The date is the trainer’s guess from earlier years. Check Canvas and the exam office.' } ] });
 
-const doc = { version: new Date().toISOString().slice(0, 10), source: 'SSE Trainers (hämtat från Canvas 27–28 okt 2026)', tz: 'Europe/Stockholm', courses };
+/* Later changes in Canvas that the Trainers files do not have yet (rooms mostly): tools/canvas_updates.json */
+let checked = '';
+const updatesFile = path.join(path.dirname(fileURLToPath(import.meta.url)), 'canvas_updates.json');
+if (fs.existsSync(updatesFile)) {
+  const up = JSON.parse(fs.readFileSync(updatesFile, 'utf8'));
+  let applied = 0;
+  for (const u of up.updates) {
+    const what = u.course + ' ' + (u.id || u.title) + (u.group ? ' grupp ' + u.group : '');
+    const c = courses.find((x) => x.id === u.course);
+    const ev = c && c.events.find((e) => (u.id ? e.id === u.id : e.title === u.title));
+    const t = ev && (u.group ? ev.slots && ev.slots[u.group] : ev);
+    if (!t) { console.warn('canvas update not applied, no such event: ' + what); continue; }
+    if (u.room && t.room === u.room && (!u.start || t.start === iso(u.start))) continue;      /* the import already has it */
+    if (u.was && t.room !== u.was) { console.warn('canvas update not applied, the timetable now says ' + t.room + ' (expected ' + u.was + '): ' + what); continue; }
+    if (u.start) { const len = t.end ? new Date(t.end) - new Date(t.start) : 0; t.start = iso(u.start); if (u.end) t.end = iso(u.end); else if (u.group && len) t.end = addMin(t.start, len / 60000); }
+    if (u.room) t.room = u.room;
+    applied++;
+  }
+  const d = new Date(up.checked + 'T12:00:00Z');
+  checked = ', kontrollerat mot Canvas ' + d.getUTCDate() + ' ' + ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'][d.getUTCMonth()] + ' ' + d.getUTCFullYear();
+  console.log('canvas updates applied:', applied, 'of', up.updates.length);
+}
+
+const doc = { version: new Date().toISOString().slice(0, 10), source: 'SSE Trainers (hämtat från Canvas 27–28 okt 2026' + checked + ')', tz: 'Europe/Stockholm', courses };
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(doc, null, 1));
 console.log('wrote', out, courses.map((c) => c.code + ':' + c.events.length).join(' '));
